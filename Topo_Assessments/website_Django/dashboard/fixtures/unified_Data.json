@@ -1,0 +1,1206 @@
+{
+    "name": "Sports and Leisure Quarterly Performance Report",
+    "industry_Performance_List": [
+        {
+            "year": 2022,
+            "quarter": "Q1",
+            "revenue": 2100000,
+            "memberships_Sold": 300,
+            "avg_Duration_Mins": 85
+        },
+        {
+            "year": 2022,
+            "quarter": "Q2",
+            "revenue": 2300000,
+            "memberships_Sold": 320,
+            "avg_Duration_Mins": 87
+        },
+        {
+            "year": 2022,
+            "quarter": "Q3",
+            "revenue": 2500000,
+            "memberships_Sold": 340,
+            "avg_Duration_Mins": 89
+        },
+        {
+            "year": 2022,
+            "quarter": "Q4",
+            "revenue": 2700000,
+            "memberships_Sold": 360,
+            "avg_Duration_Mins": 88
+        },
+        {
+            "year": 2023,
+            "quarter": "Q1",
+            "revenue": 2300000,
+            "memberships_Sold": 320,
+            "avg_Duration_Mins": 90
+        },
+        {
+            "year": 2023,
+            "quarter": "Q2",
+            "revenue": 2500000,
+            "memberships_Sold": 400,
+            "avg_Duration_Mins": 95
+        },
+        {
+            "year": 2023,
+            "quarter": "Q3",
+            "revenue": 2700000,
+            "memberships_Sold": 350,
+            "avg_Duration_Mins": 100
+        },
+        {
+            "year": 2023,
+            "quarter": "Q4",
+            "revenue": 2900000,
+            "memberships_Sold": 450,
+            "avg_Duration_Mins": 92
+        },
+        {
+            "year": 2024,
+            "quarter": "Q1",
+            "revenue": 3100000,
+            "memberships_Sold": 420,
+            "avg_Duration_Mins": 88
+        },
+        {
+            "year": 2024,
+            "quarter": "Q2",
+            "revenue": 3300000,
+            "memberships_Sold": 500,
+            "avg_Duration_Mins": 90
+        }
+    ],
+    "company_List": [
+        {
+            "id": 1,
+            "name": "FitPro",
+            "industry": "Sports and Leisure",
+            "company_Revenue": 95000000.0,
+            "location": "North America",
+            "employee_List": [
+                {
+                    "id": "E001",
+                    "name": "Alice",
+                    "role": "Personal Trainer",
+                    "cashmoney": 45000,
+                    "hired_Date": "2020-01-15"
+                },
+                {
+                    "id": "E002",
+                    "name": "Bob",
+                    "role": "Group Fitness Instructor",
+                    "cashmoney": 40000,
+                    "hired_Date": "2019-06-22"
+                },
+                {
+                    "id": "E003",
+                    "name": "Eve",
+                    "role": "Gym Manager",
+                    "cashmoney": 70000,
+                    "hired_Date": "2021-03-12"
+                },
+                {
+                    "id": "E004",
+                    "name": "Frank",
+                    "role": "Sports Nutritionist",
+                    "cashmoney": 60000,
+                    "hired_Date": "2022-07-08"
+                },
+                {
+                    "id": "E005",
+                    "name": "Grace",
+                    "role": "Marketing Specialist",
+                    "cashmoney": 50000,
+                    "hired_Date": "2020-12-01"
+                },
+                {
+                    "id": "E006",
+                    "name": "Hank",
+                    "role": "Customer Service Lead",
+                    "cashmoney": 42000,
+                    "hired_Date": "2018-11-15"
+                },
+                {
+                    "id": "E007",
+                    "name": "Isla",
+                    "role": "Event Coordinator",
+                    "cashmoney": 48000,
+                    "hired_Date": "2021-06-10"
+                },
+                {
+                    "id": "E008",
+                    "name": "Jake",
+                    "role": "Equipment Maintenance Technician",
+                    "cashmoney": 40000,
+                    "hired_Date": null
+                },
+                {
+                    "id": "E009",
+                    "name": "Karen",
+                    "role": "Swimming Coach",
+                    "cashmoney": 47000,
+                    "hired_Date": "2019-09-18"
+                },
+                {
+                    "id": "E010",
+                    "name": "Leo",
+                    "role": "Yoga Instructor",
+                    "cashmoney": 42000,
+                    "hired_Date": "2020-05-22"
+                },
+                {
+                    "id": "E011",
+                    "name": "Maya",
+                    "role": "Receptionist",
+                    "cashmoney": 30000,
+                    "hired_Date": "2021-11-03"
+                },
+                {
+                    "id": "E012",
+                    "name": "Noah",
+                    "role": "Aquatics Director",
+                    "cashmoney": 60000,
+                    "hired_Date": "2019-03-27"
+                },
+                {
+                    "id": "E013",
+                    "name": "Olivia",
+                    "role": "Fitness Consultant",
+                    "cashmoney": 52000,
+                    "hired_Date": "2022-01-17"
+                },
+                {
+                    "id": "E014",
+                    "name": "Peter",
+                    "role": "Tennis Coach",
+                    "cashmoney": 55000,
+                    "hired_Date": "2017-08-30"
+                },
+                {
+                    "id": "E015",
+                    "name": "Quinn",
+                    "role": "Corporate Wellness Coordinator",
+                    "cashmoney": 62000,
+                    "hired_Date": "2023-02-01"
+                }
+            ],
+            "q_Performance_List": [
+                {
+                    "year": 2023,
+                    "total_Revenue": 10400000,
+                    "total_Membership_Sold": 1520,
+                    "top_Location": "Downtown",
+                    "quarters": [
+                        {
+                            "year": 2023,
+                            "quarter": "Q1",
+                            "memberships_Sold": 320,
+                            "avg_Duration_min": 90,
+                            "revenue": 2300000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q2",
+                            "memberships_Sold": 400,
+                            "avg_Duration_min": 95,
+                            "revenue": 2500000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q3",
+                            "memberships_Sold": 350,
+                            "avg_Duration_min": 100,
+                            "revenue": 2700000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q4",
+                            "memberships_Sold": 450,
+                            "avg_Duration_min": 92,
+                            "revenue": 2900000,
+                            "profit_Margin": "NaN"
+                        }
+                    ],
+                    "revenue_Distribution": {
+                        "gym": 40,
+                        "pool": 25,
+                        "tennis_Court": 15,
+                        "personal_Training": 20
+                    }
+                }
+            ],
+            "client_List": [
+                {
+                    "date": "2024-01-21",
+                    "membership_Id": "M001",
+                    "activity": "Gym",
+                    "revenue": 113.82,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-05",
+                    "membership_Id": "M002",
+                    "activity": "Pool",
+                    "revenue": 104.74,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-14",
+                    "membership_Id": "M003",
+                    "activity": "Gym",
+                    "revenue": 23.12,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-20",
+                    "membership_Id": "M004",
+                    "activity": "Personal Training",
+                    "revenue": 110.24,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-15",
+                    "membership_Id": "M005",
+                    "activity": "Dance Class",
+                    "revenue": 123.32,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M006",
+                    "activity": "Swimming Class",
+                    "revenue": 48.9,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-04",
+                    "membership_Id": "M007",
+                    "activity": "Yoga Class",
+                    "revenue": 23.54,
+                    "duration_Min": 90,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-09",
+                    "membership_Id": "M008",
+                    "activity": "Climbing Wall",
+                    "revenue": 85.07,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-18",
+                    "membership_Id": "M009",
+                    "activity": "Swimming Class",
+                    "revenue": 90.83,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-22",
+                    "membership_Id": "M010",
+                    "activity": "Dance Class",
+                    "revenue": 147.93,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-13",
+                    "membership_Id": "M011",
+                    "activity": "Climbing Wall",
+                    "revenue": 99.0,
+                    "duration_Min": 90,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-12",
+                    "membership_Id": "M012",
+                    "activity": "Personal Training",
+                    "revenue": 103.82,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-21",
+                    "membership_Id": "M013",
+                    "activity": "Personal Training",
+                    "revenue": 32.88,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-30",
+                    "membership_Id": "M014",
+                    "activity": "Personal Training",
+                    "revenue": 105.85,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-27",
+                    "membership_Id": "M015",
+                    "activity": "Swimming Class",
+                    "revenue": 66.16,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-30",
+                    "membership_Id": "M016",
+                    "activity": "Swimming Class",
+                    "revenue": 39.77,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-29",
+                    "membership_Id": "M017",
+                    "activity": "Climbing Wall",
+                    "revenue": 30.0,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M018",
+                    "activity": "Dance Class",
+                    "revenue": 114.58,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-13",
+                    "membership_Id": "M019",
+                    "activity": "Personal Training",
+                    "revenue": 149.63,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-16",
+                    "membership_Id": "M020",
+                    "activity": "Gym",
+                    "revenue": 130.55,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-06",
+                    "membership_Id": "M021",
+                    "activity": "Yoga Class",
+                    "revenue": 93.5,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-20",
+                    "membership_Id": "M022",
+                    "activity": "Dance Class",
+                    "revenue": 145.95,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M023",
+                    "activity": "Dance Class",
+                    "revenue": 117.6,
+                    "duration_Min": 90,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-10",
+                    "membership_Id": "M024",
+                    "activity": "Tennis Court",
+                    "revenue": 73.52,
+                    "duration_Min": 90,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-25",
+                    "membership_Id": "M025",
+                    "activity": "Pool",
+                    "revenue": 131.87,
+                    "duration_Min": 90,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-17",
+                    "membership_Id": "M026",
+                    "activity": "Personal Training",
+                    "revenue": 31.4,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-31",
+                    "membership_Id": "M027",
+                    "activity": "Gym",
+                    "revenue": 93.85,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-04",
+                    "membership_Id": "M028",
+                    "activity": "Dance Class",
+                    "revenue": 43.52,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-31",
+                    "membership_Id": "M029",
+                    "activity": "Pool",
+                    "revenue": 112.47,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-25",
+                    "membership_Id": "M030",
+                    "activity": "Tennis Court",
+                    "revenue": 102.37,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-17",
+                    "membership_Id": "M031",
+                    "activity": "Yoga Class",
+                    "revenue": 145.01,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-10",
+                    "membership_Id": "M032",
+                    "activity": "Swimming Class",
+                    "revenue": 71.33,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-08",
+                    "membership_Id": "M033",
+                    "activity": "Pool",
+                    "revenue": 57.33,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-08",
+                    "membership_Id": "M034",
+                    "activity": "Pool",
+                    "revenue": 109.1,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-03",
+                    "membership_Id": "M035",
+                    "activity": "Swimming Class",
+                    "revenue": 19.92,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-22",
+                    "membership_Id": "M036",
+                    "activity": "Personal Training",
+                    "revenue": 85.49,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-26",
+                    "membership_Id": "M037",
+                    "activity": "Yoga Class",
+                    "revenue": 36.66,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-14",
+                    "membership_Id": "M038",
+                    "activity": "Yoga Class",
+                    "revenue": 67.55,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-21",
+                    "membership_Id": "M039",
+                    "activity": "Pool",
+                    "revenue": 18.49,
+                    "duration_Min": 90,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-08",
+                    "membership_Id": "M040",
+                    "activity": "Personal Training",
+                    "revenue": 85.08,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-06",
+                    "membership_Id": "M041",
+                    "activity": "Climbing Wall",
+                    "revenue": 44.97,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-26",
+                    "membership_Id": "M042",
+                    "activity": "Pool",
+                    "revenue": 17.08,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-30",
+                    "membership_Id": "M043",
+                    "activity": "Tennis Court",
+                    "revenue": 66.9,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-28",
+                    "membership_Id": "M044",
+                    "activity": "Gym",
+                    "revenue": 33.05,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-09",
+                    "membership_Id": "M045",
+                    "activity": "Dance Class",
+                    "revenue": 69.22,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-07",
+                    "membership_Id": "M046",
+                    "activity": "Personal Training",
+                    "revenue": 145.62,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-11",
+                    "membership_Id": "M047",
+                    "activity": "Gym",
+                    "revenue": 91.78,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-31",
+                    "membership_Id": "M048",
+                    "activity": "Pool",
+                    "revenue": 129.19,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-03",
+                    "membership_Id": "M049",
+                    "activity": "Personal Training",
+                    "revenue": 66.53,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-20",
+                    "membership_Id": "M050",
+                    "activity": "Pool",
+                    "revenue": 68.69,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-07",
+                    "membership_Id": "M051",
+                    "activity": "Swimming Class",
+                    "revenue": 43.42,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-22",
+                    "membership_Id": "M052",
+                    "activity": "Dance Class",
+                    "revenue": 74.01,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-15",
+                    "membership_Id": "M053",
+                    "activity": "Pool",
+                    "revenue": 20.26,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-09",
+                    "membership_Id": "M054",
+                    "activity": "Swimming Class",
+                    "revenue": 133.32,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-10",
+                    "membership_Id": "M055",
+                    "activity": "Climbing Wall",
+                    "revenue": 126.72,
+                    "duration_Min": 90,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-26",
+                    "membership_Id": "M056",
+                    "activity": "Gym",
+                    "revenue": 103.5,
+                    "duration_Min": 90,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-04",
+                    "membership_Id": "M057",
+                    "activity": "Dance Class",
+                    "revenue": 26.16,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-18",
+                    "membership_Id": "M058",
+                    "activity": "Dance Class",
+                    "revenue": 49.45,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-11",
+                    "membership_Id": "M059",
+                    "activity": "Dance Class",
+                    "revenue": 80.76,
+                    "duration_Min": 90,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-03",
+                    "membership_Id": "M060",
+                    "activity": "Yoga Class",
+                    "revenue": 126.11,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-11",
+                    "membership_Id": "M061",
+                    "activity": "Dance Class",
+                    "revenue": 32.62,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M062",
+                    "activity": "Gym",
+                    "revenue": 25.66,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-02",
+                    "membership_Id": "M063",
+                    "activity": "Tennis Court",
+                    "revenue": 70.17,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-12",
+                    "membership_Id": "M064",
+                    "activity": "Swimming Class",
+                    "revenue": 39.41,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-04",
+                    "membership_Id": "M065",
+                    "activity": "Yoga Class",
+                    "revenue": 146.34,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-28",
+                    "membership_Id": "M066",
+                    "activity": "Tennis Court",
+                    "revenue": 133.4,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M067",
+                    "activity": "Yoga Class",
+                    "revenue": 122.31,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-06",
+                    "membership_Id": "M068",
+                    "activity": "Pool",
+                    "revenue": 63.56,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-08",
+                    "membership_Id": "M069",
+                    "activity": "Climbing Wall",
+                    "revenue": 58.95,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-01",
+                    "membership_Id": "M070",
+                    "activity": "Personal Training",
+                    "revenue": 65.79,
+                    "duration_Min": 90,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-31",
+                    "membership_Id": "M071",
+                    "activity": "Swimming Class",
+                    "revenue": 99.81,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-27",
+                    "membership_Id": "M072",
+                    "activity": "Swimming Class",
+                    "revenue": 141.49,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-06",
+                    "membership_Id": "M073",
+                    "activity": "Dance Class",
+                    "revenue": 15.36,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M074",
+                    "activity": "Yoga Class",
+                    "revenue": 94.87,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-29",
+                    "membership_Id": "M075",
+                    "activity": "Personal Training",
+                    "revenue": 45.66,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-17",
+                    "membership_Id": "M076",
+                    "activity": "Personal Training",
+                    "revenue": 60.99,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-30",
+                    "membership_Id": "M077",
+                    "activity": "Swimming Class",
+                    "revenue": 102.87,
+                    "duration_Min": 30,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-29",
+                    "membership_Id": "M078",
+                    "activity": "Dance Class",
+                    "revenue": 103.37,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M079",
+                    "activity": "Tennis Court",
+                    "revenue": 36.86,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M080",
+                    "activity": "Dance Class",
+                    "revenue": 66.85,
+                    "duration_Min": 30,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-10",
+                    "membership_Id": "M081",
+                    "activity": "Yoga Class",
+                    "revenue": 120.01,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-15",
+                    "membership_Id": "M082",
+                    "activity": "Personal Training",
+                    "revenue": 81.56,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-03",
+                    "membership_Id": "M083",
+                    "activity": "Swimming Class",
+                    "revenue": 23.07,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-10",
+                    "membership_Id": "M084",
+                    "activity": "Personal Training",
+                    "revenue": 30.63,
+                    "duration_Min": 30,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-16",
+                    "membership_Id": "M085",
+                    "activity": "Pool",
+                    "revenue": 73.76,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M086",
+                    "activity": "Climbing Wall",
+                    "revenue": 65.95,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M087",
+                    "activity": "Pool",
+                    "revenue": 118.98,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-26",
+                    "membership_Id": "M088",
+                    "activity": "Climbing Wall",
+                    "revenue": 17.03,
+                    "duration_Min": 60,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-15",
+                    "membership_Id": "M089",
+                    "activity": "Climbing Wall",
+                    "revenue": 103.46,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-20",
+                    "membership_Id": "M090",
+                    "activity": "Yoga Class",
+                    "revenue": 126.28,
+                    "duration_Min": 120,
+                    "location": "Downtown"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M091",
+                    "activity": "Climbing Wall",
+                    "revenue": 46.29,
+                    "duration_Min": 60,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-09",
+                    "membership_Id": "M092",
+                    "activity": "Climbing Wall",
+                    "revenue": 97.74,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-03",
+                    "membership_Id": "M093",
+                    "activity": "Dance Class",
+                    "revenue": 42.83,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-29",
+                    "membership_Id": "M094",
+                    "activity": "Pool",
+                    "revenue": 29.37,
+                    "duration_Min": 60,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-23",
+                    "membership_Id": "M095",
+                    "activity": "Personal Training",
+                    "revenue": 18.99,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-18",
+                    "membership_Id": "M096",
+                    "activity": "Yoga Class",
+                    "revenue": 18.72,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-29",
+                    "membership_Id": "M097",
+                    "activity": "Gym",
+                    "revenue": 129.94,
+                    "duration_Min": 120,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-01",
+                    "membership_Id": "M098",
+                    "activity": "Dance Class",
+                    "revenue": 115.49,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                },
+                {
+                    "date": "2024-01-24",
+                    "membership_Id": "M099",
+                    "activity": "Personal Training",
+                    "revenue": 78.35,
+                    "duration_Min": 90,
+                    "location": "Westside"
+                },
+                {
+                    "date": "2024-01-16",
+                    "membership_Id": "M100",
+                    "activity": "Yoga Class",
+                    "revenue": 57.06,
+                    "duration_Min": 120,
+                    "location": "Eastside"
+                }
+            ],
+            "a_Performance_List": [
+                {
+                    "year": 2023,
+                    "total_Revenue": 10400000,
+                    "total_Membership_Sold": 1520,
+                    "top_Location": "Downtown",
+                    "quarters": [
+                        {
+                            "year": 2023,
+                            "quarter": "Q1",
+                            "memberships_Sold": 320,
+                            "avg_Duration_min": 90,
+                            "revenue": 2300000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q2",
+                            "memberships_Sold": 400,
+                            "avg_Duration_min": 95,
+                            "revenue": 2500000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q3",
+                            "memberships_Sold": 350,
+                            "avg_Duration_min": 100,
+                            "revenue": 2700000,
+                            "profit_Margin": "NaN"
+                        },
+                        {
+                            "year": 2023,
+                            "quarter": "Q4",
+                            "memberships_Sold": 450,
+                            "avg_Duration_min": 92,
+                            "revenue": 2900000,
+                            "profit_Margin": "NaN"
+                        }
+                    ],
+                    "revenue_Distribution": {
+                        "gym": 40,
+                        "pool": 25,
+                        "tennis_Court": 15,
+                        "personal_Training": 20
+                    }
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "RecreaLife",
+            "industry": "Sports and Leisure",
+            "company_Revenue": NaN,
+            "location": "Europe",
+            "employee_List": [
+                {
+                    "id": "E101",
+                    "name": "Carol",
+                    "role": "Spa Therapist",
+                    "cashmoney": 35000,
+                    "hired_Date": "NaN"
+                },
+                {
+                    "id": "E102",
+                    "name": "Dave",
+                    "role": "Physiotherapist",
+                    "cashmoney": 60000,
+                    "hired_Date": "NaN"
+                },
+                {
+                    "id": "E103",
+                    "name": "Emma",
+                    "role": "Wellness Coach",
+                    "cashmoney": 45000,
+                    "hired_Date": "2020-05-13"
+                },
+                {
+                    "id": "E104",
+                    "name": "Fiona",
+                    "role": "Sports Therapist",
+                    "cashmoney": 55000,
+                    "hired_Date": null
+                },
+                {
+                    "id": "E105",
+                    "name": "George",
+                    "role": "Massage Therapist",
+                    "cashmoney": 40000,
+                    "hired_Date": "2021-04-22"
+                },
+                {
+                    "id": "E106",
+                    "name": "Holly",
+                    "role": "Front Desk Manager",
+                    "cashmoney": 38000,
+                    "hired_Date": "2019-10-03"
+                },
+                {
+                    "id": "E107",
+                    "name": "Ian",
+                    "role": "Lifeguard",
+                    "cashmoney": 32000,
+                    "hired_Date": "2018-07-20"
+                },
+                {
+                    "id": "E108",
+                    "name": "Julia",
+                    "role": "Dance Instructor",
+                    "cashmoney": 42000,
+                    "hired_Date": "2020-09-14"
+                },
+                {
+                    "id": "E109",
+                    "name": "Kyle",
+                    "role": "Climbing Instructor",
+                    "cashmoney": 45000,
+                    "hired_Date": "2015-11-10"
+                },
+                {
+                    "id": "E110",
+                    "name": "Lila",
+                    "role": "Pilates Instructor",
+                    "cashmoney": 46000,
+                    "hired_Date": "2017-01-25"
+                },
+                {
+                    "id": "E111",
+                    "name": "Milo",
+                    "role": "Recreation Manager",
+                    "cashmoney": 58000,
+                    "hired_Date": "2022-06-02"
+                },
+                {
+                    "id": "E112",
+                    "name": "Nora",
+                    "role": "Aquatic Exercise Instructor",
+                    "cashmoney": 48000,
+                    "hired_Date": "2020-02-15"
+                },
+                {
+                    "id": "E113",
+                    "name": "Oscar",
+                    "role": "Outdoor Adventure Guide",
+                    "cashmoney": 53000,
+                    "hired_Date": "2021-03-09"
+                },
+                {
+                    "id": "E114",
+                    "name": "Paula",
+                    "role": "Membership Coordinator",
+                    "cashmoney": 36000,
+                    "hired_Date": "2019-12-19"
+                },
+                {
+                    "id": "E115",
+                    "name": "Quincy",
+                    "role": "Wellness Retreat Planner",
+                    "cashmoney": 70000,
+                    "hired_Date": "2023-04-15"
+                }
+            ],
+            "q_Performance_List": [],
+            "client_List": [],
+            "a_Performance_List": []
+        }
+    ]
+}
