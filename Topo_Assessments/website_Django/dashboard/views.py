@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from dashboard.models import *
-from .serializers import Item_Serializer
+from .serializers import *
 
 # def index(request):
 #     return render(request, 'index.html')

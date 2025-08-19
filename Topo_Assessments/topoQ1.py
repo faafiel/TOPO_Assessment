@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import json
+import math
 from IPython.display import display
 import pdfplumber
 from pptx import Presentation
@@ -19,80 +20,80 @@ from pptx import Presentation
     The Importer class imports the 4 datasets and uses the data to construct other class instances which are nested. The
     nested structure is then converted into a unified dictionary structure and exported as a json file in local directory.
 
-    Each class except Importer class has a Get_Dict() function that reformats the instance into a subset of the 
+    Each class except Importer class has a get_dict() function that reformats the instance into a subset of the 
     unified dictionary, before being merged with the dictionary of it's parent class.
-
-
     '''
 #===========================================================================================================================
-# Class' 
+# Class List 
 
     
 class Industry:
+
     def __init__(self, name, industry_Performance_List, company_List):
         self.name                       = name
         self.industry_Performance_List  = industry_Performance_List # 2D array of: [Year] BY [Quarter, Revenue, Memberships sold, AVG Duration(Minutes)]
         self.company_List               = company_List              # 1D array of Company objects
 
-    def Get_Dict(self):
+    def get_dict(self):
         json_Company_List = []
-        json_Industry_Performance_List = []
+        json_Industry_performance_list = []
 
         for company in self.company_List:
-            json_Company_List.append(company.Get_Dict())
+            json_Company_List.append(company.get_dict())
 
         for quarter in self.industry_Performance_List:
 
             json_quarter = {"year": quarter[0],
                             "quarter": quarter[1],
                             "revenue": quarter[2],
-                            "memberships_Sold": quarter[3],
-                            "avg_Duration_Mins": quarter[4]}
+                            "memberships_sold": quarter[3],
+                            "avg_duration_mins": quarter[4]}
             
-            json_Industry_Performance_List.append(json_quarter)
+            json_Industry_performance_list.append(json_quarter)
 
         dict_obj = {
             "name": self.name,
-            "industry_Performance_List": json_Industry_Performance_List,
+            "industry_Performance_List": json_Industry_performance_list,
             "company_List": json_Company_List
         }
         return dict_obj
 
 class Company:
-    def __init__(self, id, name,  employee_List, q_Performance_List, industry = "Nan", company_Revenue = "NaN",  location = "NaN", client_List = "NaN"):
+
+    def __init__(self, id, name,  employee_List, quarter_performance_list, industry = "Nan", company_Revenue = "NaN",  location = "NaN", client_List = "NaN"):
         self.id                         = id
         self.name                       = name
         self.industry                   = industry
         self.company_Revenue            = company_Revenue
         self.location                   = location
-        self.employee_List              = employee_List            # 1D array of Employee objects
-        self.q_Performance_List         = q_Performance_List       # 1D array of q_Performance objects
-        self.client_List                = []                       # 1D array of client objects
-        self.a_Performance_List         = []                       # 1D array of a_Performance objects
+        self.employee_List              = employee_List             # 1D array of Employee objects
+        self.quarter_performance_list    = quarter_performance_list # 1D array of QuarterPerformance objects
+        self.client_List                = []                        # 1D array of client objects
+        self.annual_performance_list    = []                        # 1D array of AnnualPerformance objects
 
-    def Client_Setter(self, client_List):
+    def client_setter(self, client_List):
         self.client_List = client_List
 
-    def Annual_Performance_Add(self, val):
-        self.a_Performance_List.append(val)
+    def annual_performance_add(self, val):
+        self.annual_performance_list.append(val)
     
-    def Get_Dict(self):
-        json_Employee_List      = []
-        json_Q_Performance_List = []
-        json_Client_List        = []
-        json_A_Performance_List = []
+    def get_dict(self):
+        json_employee_list           = []
+        json_quarter_performance_list= []
+        json_client_list             = []
+        json_annual_performance_list = []
 
         for employee in self.employee_List:
-            json_Employee_List.append(employee.Get_Dict())
+            json_employee_list.append(employee.get_dict())
 
-        for quarter in self.a_Performance_List:
-            json_Q_Performance_List.append(quarter.Get_Dict())
+        for quarter in self.annual_performance_list:
+            json_quarter_performance_list.append(quarter.get_dict())
         
         for client in self.client_List:
-            json_Client_List.append(client.Get_Dict())
+            json_client_list.append(client.get_dict())
 
-        for annual in self.a_Performance_List:
-            json_A_Performance_List.append(annual.Get_Dict())
+        for annual in self.annual_performance_list:
+            json_annual_performance_list.append(annual.get_dict())
 
         dict_obj = {
             "id": self.id,
@@ -100,35 +101,37 @@ class Company:
             "industry": self.industry,
             "company_Revenue": self.company_Revenue,
             "location": self.location,
-            "employee_List": json_Employee_List,
-            "q_Performance_List": json_Q_Performance_List,
-            "client_List":  json_Client_List,
-            "a_Performance_List": json_A_Performance_List
+            "employee_List": json_employee_list,
+            "quarter_performance_list": json_quarter_performance_list,
+            "client_List":  json_client_list,
+            "annual_performance_list": json_annual_performance_list
         }
         return dict_obj
 
 class Client:
-    def __init__(self, date, membership_Id, membership_Type, activity, revenue, duration_Min, location ):
+
+    def __init__(self, date, membership_id, membership_type, activity, revenue, duration_min, location ):
         self.date                       = date
-        self.membership_Id              = membership_Id
-        self.membership_Type            = membership_Type
+        self.membership_id              = membership_id
+        self.membership_type            = membership_type
         self.activity                   = activity
         self.revenue                    = revenue
-        self.duration_Min               = duration_Min
+        self.duration_min               = duration_min
         self.location                   = location
 
-    def Get_Dict(self):
+    def get_dict(self):
         dict_obj = {
             "date": self.date,
-            "membership_Id": self.membership_Id,
+            "membership_id": self.membership_id,
             "activity": self.activity,
             "revenue": self.revenue,
-            "duration_Min": self.duration_Min,
+            "duration_min": self.duration_min,
             "location": self.location
         }
         return dict_obj
 
 class Employee:
+
     def __init__(self, id, name, role = "NaN", cashmoney = "NaN", hired_Date = "NaN"):
         self.id                         = id
         self.name                       = name
@@ -136,7 +139,7 @@ class Employee:
         self.cashmoney                  = cashmoney
         self.hired_Date                 = hired_Date
 
-    def Get_Dict(self):
+    def get_dict(self):
         dict_obj = {
             "id": self.id,
             "name": self.name,
@@ -146,71 +149,74 @@ class Employee:
         }
         return dict_obj
     
-class Q_Performance: 
-    def __init__(self, year = "Nan", quarter = "NaN", memberships_Sold = "NaN", avg_Duration_min = "NaN", revenue = "NaN", profit_Margin = "NaN"):
+class QuarterPerformance: 
+
+    def __init__(self, year = "Nan", quarter = "NaN", memberships_sold = "NaN", avg_duration_min = "NaN", revenue = "NaN", profit_margin = "NaN"):
         self.year                       = year
         self.quarter                    = quarter           # This should be a string for compatibility with different documents
         self.revenue                    = revenue
-        self.memberships_Sold           = memberships_Sold
-        self.avg_Duration_min           = avg_Duration_min
-        self.profit_Margin              = profit_Margin
+        self.memberships_sold           = memberships_sold
+        self.avg_duration_min           = avg_duration_min
+        self.profit_margin              = profit_margin
 
-    def Get_Dict(self):
+    def get_dict(self):
         dict_obj = {
             "year": self.year,
             "quarter": self.quarter,
-            "memberships_Sold": self.memberships_Sold,
-            "avg_Duration_min": self.avg_Duration_min,
+            "memberships_sold": self.memberships_sold,
+            "avg_duration_min": self.avg_duration_min,
             "revenue": self.revenue,
-            "profit_Margin": self.profit_Margin
+            "profit_margin": self.profit_margin
         }
         return dict_obj
 
-class A_Performance:
-    def __init__(self, year, total_Revenue, total_Membership_Sold, top_Location, quarters, revenue_Distribution):
-        self.year                       = year
-        self.total_Revenue              = total_Revenue
-        self.total_Membership_Sold      = total_Membership_Sold
-        self.top_Location               = top_Location
-        self.quarters                   = quarters              # 1D array of Q_Performance objects
-        self.revenue_Distribution       = revenue_Distribution  # 1D arrary of [gym, pool, tennis_Court, personal_Training]
+class AnnualPerformance:
 
-    def Get_Dict(self):
-        json_Revenue_Distribution = {"gym": self.revenue_Distribution[0],
-                                     "pool": self.revenue_Distribution[1],
-                                     "tennis_Court": self.revenue_Distribution[2],
-                                     "personal_Training": self.revenue_Distribution[3]}
+    def __init__(self, year, total_revenue, total_membership_sold, top_location, quarters, revenue_distribution):
+        self.year                       = year
+        self.total_revenue              = total_revenue
+        self.total_membership_sold      = total_membership_sold
+        self.top_location               = top_location
+        self.quarters                   = quarters              # 1D array of QuarterPerformance objects
+        self.revenue_distribution       = revenue_distribution  # 1D arrary of [gym, pool, tennis_Court, personal_Training]
+
+    def get_dict(self):
+        json_revenue_distribution = {"gym": self.revenue_distribution[0],
+                                     "pool": self.revenue_distribution[1],
+                                     "tennis_Court": self.revenue_distribution[2],
+                                     "personal_Training": self.revenue_distribution[3]}
         
-        json_Quarter_List = []
+        json_quarter_list = []
 
         for quarter in self.quarters:
-            json_Quarter_List.append(quarter.Get_Dict())
+            json_quarter_list.append(quarter.get_dict())
 
         dict_obj = {
             "year": self.year,
-            "total_Revenue": self.total_Revenue,
-            "total_Membership_Sold": self.total_Membership_Sold,
-            "top_Location": self.top_Location,
-            "quarters": json_Quarter_List,
-            "revenue_Distribution": json_Revenue_Distribution
+            "total_revenue": self.total_revenue,
+            "total_membership_sold": self.total_membership_sold,
+            "top_location": self.top_location,
+            "quarters": json_quarter_list,
+            "revenue_distribution": json_revenue_distribution
         }
         return dict_obj
 
 class Importer:
+
     def __init__(self, file_JSON, file_CSV, file_PDF, file_PPTX):
         self.file_json = file_JSON
-        self.all_Employee               = [] # temp 1D array of employee objects 
-        self.all_Q_Performance          = [] # temp 1D array of performance objects
-        self.all_Companies              = [] # temp 1D array of company objects
-        self.all_Industry               = [] # 1D array of all industry
+        self.all_employee               = [] # temp 1D array of employee objects 
+        self.all_quarter_performance    = [] # temp 1D array of performance objects
+        self.all_companies              = [] # temp 1D array of company objects
+        self.all_industry               = [] # 1D array of all industry
 
-        self.Import_JSON(file_JSON)
-        self.Import_CSV(file_CSV)
-        self.Import_PDF(file_PDF)
-        self.Import_PPTX(file_PPTX)
+        self.import_json(file_JSON)
+        self.import_csv(file_CSV)
+        self.import_pdf(file_PDF)
+        self.import_pptx(file_PPTX)
 
 
-    def Import_JSON(self,  file):
+    def import_json(self,  file):
         # Step 1: Import file as a dataframe
         df_json = pd.read_json(file)
         df_normalized = pd.json_normalize(
@@ -239,72 +245,80 @@ class Importer:
                                     employee[3])
                 employee_List.append(employee_temp)
             if len(employee_List) > 0:
-                self.all_Employee.append(employee_List)
+                self.all_employee.append(employee_List)
                 
- 
-
         # Step 2.2: Break down performance data by company
+        # Had to reimport the json.csv again as a dict because the original dataframe was hard to manipulate for this stage
         with open('dataset1.json', 'r') as file:
             dict_json = json.load(file)
-        
         for company in range(len(dict_json['companies'])):
-            q_Performance = dict_json['companies'][company]["performance"]    # output is a 2 layer nested dictionary
-            q_Performance_List = []
-            for quarter in q_Performance:
+            quarter_performance_tmp = dict_json['companies'][company]["performance"]    # output is a 2 layer nested dictionary
+            quarter_performance_list = []
+            for quarter in quarter_performance_tmp:
                 
- 
-                q_Performance_temp = Q_Performance( "NaN",
+
+                quarter_performance_tmp_obj = QuarterPerformance( "NaN",
                                                    quarter,
                                                    "NaN",
                                                    "NaN",
-                                                    q_Performance[quarter]['revenue'],
-                                                    q_Performance[quarter]['profit_margin'])
-                q_Performance_List.append(q_Performance_temp)
-            self.all_Q_Performance.append(q_Performance_List)
+                                                    quarter_performance_tmp[quarter]['revenue'],
+                                                    quarter_performance_tmp[quarter]['profit_margin'])
+                quarter_performance_list.append(quarter_performance_tmp_obj)
+            self.all_quarter_performance.append(quarter_performance_list)
 
         # Step 2.3: Break down company info data for each company
         selected_range = df_normalized.loc[:, 'id':'location'] 
         for index, company in selected_range.iterrows():
             
-            attribute_List = []
+            attribute_list = []
             for attribute in company:
-                attribute_List.append(attribute)
+                print(attribute)
+                if  (isinstance(attribute, int) or isinstance(attribute, str)):
+                    print("not error")
+                    attribute_list.append(attribute)
+                else:
+                    print("error")
+                    attribute_list.append(0)
             
-            company_temp = Company(attribute_List[0],
-                            attribute_List[1],
-                            self.all_Employee[index],
-                            self.all_Q_Performance[index],
-                            attribute_List[2],
-                            attribute_List[3],
-                            attribute_List[4])
-            self.all_Companies.append(company_temp)
+            company_temp = Company(attribute_list[0],
+                            attribute_list[1],
+                            self.all_employee[index],
+                            self.all_quarter_performance[index],
+                            attribute_list[2],
+                            attribute_list[3],
+                            attribute_list[4])
+            self.all_companies.append(company_temp)
 
-    def Import_CSV(self,  file):
+    def import_csv(self,  file):
         df_csv = pd.read_csv(file)
         client_List = []            # 1D array of Client objects
         for index, client in df_csv.iterrows():
-            new_Client = []
+            new_client = []
             for attribute in client:
-                new_Client.append(attribute)
-            client_temp = Client(new_Client[0],
-                            new_Client[1],
-                            new_Client[2],
-                            new_Client[3],
-                            new_Client[4],
-                            new_Client[5],
-                            new_Client[6])
+                new_client.append(attribute)
+            client_temp = Client(new_client[0],
+                            new_client[1],
+                            new_client[2],
+                            new_client[3],
+                            new_client[4],
+                            new_client[5],
+                            new_client[6])
             
             client_List.append(client_temp)
-        self.all_Companies[0].Client_Setter(client_List)
+        self.all_companies[0].client_setter(client_List)
 
-    def Import_PDF(self, file):
+    def import_pdf(self, file):
+        # The PDFPlumber library does not have a striaghtforward way to extract out specific text bt locale. rather it simply extracts all
+        # text on a page as 1 string. So I had to slice the string to extarct out the page (table) header. Beyond that, the
+        # table could be extracted simply
+         
         with pdfplumber.open(file) as pdf:
             first_page = pdf.pages[0] 
             tables = first_page.extract_table()
             whole_page =  next(iter(first_page.extract_text_lines()))
-            page_Header = whole_page.get('text')            # Finds first occurance of 'text' key in the page, returns value
+            page_header = whole_page.get('text')            # Finds first occurance of 'text' key in the page, returns value
             df_pdf = pd.DataFrame(tables[1:], columns= tables [0])
-        industry_Performance_Historical = []                # 2D array of quarters 
+        industry_performance_historical = []                # 2D array of quarters 
         
         for index, years in df_pdf.iterrows():
             quarter_Performance = []
@@ -325,14 +339,17 @@ class Importer:
 
                 quarter_Performance.append(attribute)
 
-            industry_Performance_Historical.append(quarter_Performance)
+            industry_performance_historical.append(quarter_Performance)
 
         # Create Industry Object and insert all other sub-objects
 
-        self.all_Industry.append(Industry(page_Header, industry_Performance_Historical, self.all_Companies))
+        self.all_industry.append(Industry(page_header, industry_performance_historical, self.all_companies))
 
 
-    def Import_PPTX(self, file):
+    def import_pptx(self, file):
+        # Because the data may exist within different "shapes" such as text box, tables etc, they need to be parsed over and 
+        # standardised into a common data structure: a dataframe. Due to the lack of a discernible pattern to the shape
+        # order, I had to do some tailoring to the pptx format for each extracted shape
        
         prs = Presentation(file)
         extracted_df = []       # 1D array to store all shapes extracted from PDF
@@ -367,42 +384,43 @@ class Importer:
         first_Shape = extracted_df[0]
 
         # Page 1 of PPTX
-        report_Year = int(extracted_df[0][0][-4:]) 
-        total_Revenue = int(extracted_df[1][1][16:].replace(",", ""))
-        total_Membership_Sold = int(extracted_df[1][2][24:].replace(",", ""))
-        top_Location = extracted_df[1][3][14:]
+        report_year = int(extracted_df[0][0][-4:]) 
+        total_revenue = int(extracted_df[1][1][16:].replace(",", ""))
+        total_membership_sold = int(extracted_df[1][2][24:].replace(",", ""))
+        top_location = extracted_df[1][3][14:]
 
         # Page 2 of PPTX
-        q_Performance_List = []
+        quarter_performance_list = []
         
         for index, quarters in extracted_df[3].iterrows():
-            q_Performance_temp = Q_Performance( report_Year,
+            quarter_performance_tmp_obj = QuarterPerformance( report_year,
                                                    quarters.iloc[0],
                                                    int(quarters.iloc[2]),
                                                    int(quarters.iloc[3]),
                                                    int(quarters.iloc[1].replace(",", "")))
             
-            q_Performance_List.append(q_Performance_temp)         
+            quarter_performance_list.append(quarter_performance_tmp_obj)         
 
         # Page 3 of PPTX
-        distribution_List = []
-        distribution_List.append(int(extracted_df[5][1][5:7]))
-        distribution_List.append(int(extracted_df[5][2][6:8]))
-        distribution_List.append(int(extracted_df[5][3][14:16]))
-        distribution_List.append(int(extracted_df[5][4][19:21]))
+        distribution_list = []
+        distribution_list.append(int(extracted_df[5][1][5:7]))
+        distribution_list.append(int(extracted_df[5][2][6:8]))
+        distribution_list.append(int(extracted_df[5][3][14:16]))
+        distribution_list.append(int(extracted_df[5][4][19:21]))
         
-        annual_temp = A_Performance(report_Year, 
-                                    total_Revenue,
-                                    total_Membership_Sold,
-                                    top_Location,
-                                    q_Performance_List,
-                                    distribution_List )
-        self.all_Industry[0].company_List[0].Annual_Performance_Add(annual_temp)
+        annual_temp = AnnualPerformance(report_year, 
+                                    total_revenue,
+                                    total_membership_sold,
+                                    top_location,
+                                    quarter_performance_list,
+                                    distribution_list )
+        self.all_industry[0].company_List[0].annual_performance_add(annual_temp)
     
     def Export (self):
-        file = self.all_Industry[0].Get_Dict()
+        file = self.all_industry[0].get_dict()
         with open('unified_Data.json', 'w') as json_file:
             json.dump(file, json_file, indent=4)
+        
 
 #===========================================================================================================================
 
