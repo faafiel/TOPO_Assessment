@@ -272,13 +272,11 @@ class Importer:
             
             attribute_list = []
             for attribute in company:
-                print(attribute)
-                if  (isinstance(attribute, int) or isinstance(attribute, str)):
-                    print("not error")
-                    attribute_list.append(attribute)
-                else:
-                    print("error")
+                if str(attribute) == "nan":
                     attribute_list.append(0)
+                else:                 
+                    attribute_list.append(attribute)
+
             
             company_temp = Company(attribute_list[0],
                             attribute_list[1],
@@ -418,8 +416,8 @@ class Importer:
     
     def Export (self):
         file = self.all_industry[0].get_dict()
-        with open('unified_Data.json', 'w') as json_file:
-            json.dump(file, json_file, indent=4)
+        with open('Topo_Assessments\website_Django\dashboard\unified_Data.json', 'w') as address:
+            json.dump(file, address, indent=4)
         
 
 #===========================================================================================================================

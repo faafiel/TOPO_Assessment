@@ -18,11 +18,13 @@ from django.urls import path
 from dashboard.views import *
 from dashboard import views
 
+
 urlpatterns = [
     path('', views.index_page, name='home'),
-    # path('dashboard/', index_page, name='home'),
     path("charts/", charts_page, name = "charts_page"),
-    path('', import_data, name = 'import_data'),
+    path("index/", index_page, name = "index_page"),
+    path('api', views.ChartData.as_view()),
+
     # path("chart/filter-options/", views.get_filter_options, name="chart-filter-options"),
     # path("chart/sales/<int:year>/", views.get_sales_chart, name="chart-sales"),
     # path("chart/spend-per-customer/<int:year>/", views.spend_per_customer_chart, name="chart-spend-per-customer"),
