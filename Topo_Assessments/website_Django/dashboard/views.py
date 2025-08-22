@@ -18,42 +18,65 @@ from .utils import *
 
 
 def index_page(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    return render(request, 'index.html')
 
 def charts_page(request):
     template = loader.get_template('charts.html')
     return HttpResponse(template.render())
 
 #==================================================================================================
+# def get_industry_quarter_chart(request):
+#     print("printing help")
+
+#     query_set = Industry_Quarters.objects()
+#     print(query_set)
+
+#     quarter_list = []
+#     revenue_list = []
+
+#     for obj in query_set:
+#         quarter_list.append(obj.quarter)
+#         revenue_list.append(obj.revenue)
+
+
+#     return render(request, 'index.html',{'labels':quarter_list,
+#                                          'revenue':revenue_list})
+
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
  
     def get(self, request, format = None):
-        quarter_labels = [
-                        '2022 Q1',
-                        '2022 Q2,'
-                        '2022 Q3',
-                        '2022 Q4',
-                        '2023 Q1',
-                        '2023 Q2,'
-                        '2023 Q3',
-                        '2023 Q4',
-                        '2024 Q1',
-                        '2024 Q2,'
-                        '2024 Q3',
-                        '2024 Q4'
-                        ]
-        
-        revenue = Industry_Quarters.objects.values('revenue').all()
-        quarter_list = Industry_Quarters.objects.values('quarter', 'revenue').all()
-        
-        print(quarter_list)
-        print("HI:")
+
+        quarter = Industry_Quarters.objects.values_list('quarter')
+        year = Industry_Quarters.objects.values_list('year')
+        revenue = Industry_Quarters.objects.values_list('revenue')
+        print(revenue)
+
+        quarter_year = []
+        counter = 0
+        for each in quarter:
+            tmp = str(year[counter]) + "_" + str(quarter[counter])
+            tmp.replace(",", "")
+            tmp.replace("'", "")
+            tmp.replace("(", "")
+            tmp.replace(")", "")
+            print(type(tmp))
+            quarter_year.append(tmp)
+            counter += 1
+
+        revenue_list = []
+        rev_counter = 0
+        for each in revenue:
+            tmp = str(revenue[rev_counter])
+            tmp.replace(",", "")
+            rev_counter += 1
+
+        chartLabel = "my data"
+        chartdata = [0, 10, 5, 2, 20, 30, 45]
         data ={
-                     "labels":quarter_labels,
-                     "chartLabel":"Industry Performance per quarter",
-                     "chartdata":quarter_list,
+                     "labels":quarter_year,
+                     "chartLabel":chartLabel,
+                     "chartdata":revenue,
              }
         return Response(data)

@@ -25,6 +25,7 @@ urlpatterns = [
     path("index/", index_page, name = "index_page"),
     path('api', views.ChartData.as_view()),
 
+    # path("dashboard/industry_quarter/", views.get_industry_quarter_chart, name="industry_quarter_chart")
     # path("chart/filter-options/", views.get_filter_options, name="chart-filter-options"),
     # path("chart/sales/<int:year>/", views.get_sales_chart, name="chart-sales"),
     # path("chart/spend-per-customer/<int:year>/", views.spend_per_customer_chart, name="chart-spend-per-customer"),
