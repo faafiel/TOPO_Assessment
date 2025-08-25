@@ -9,7 +9,8 @@ _Setting up_
 2) Run "python manage.py makemigrations"
 3) Run "python manage.py migrate"
 4) Run "python manage.py makemigrations dashboards 0021"
-   -NOTE: The 0021 may be different on different machines. It may be 0001 or 0022 on a new machine. Please check "migrations" folder in directory to verify the number of the latest file 
+   
+   - NOTE: The 0021 may be different on different machines. It may be 0001 or 0022 on a new machine. Please check "migrations" folder in directory to verify the number of the latest file 
    - The format for this CLI is "python manage.py makemigrations dashboards <migration_prefix>"
   
 _Start Server_
