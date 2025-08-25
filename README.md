@@ -1,4 +1,5 @@
-SETUP
+INTRO 
+
 Project is a uv venv that contains a django project. 
 
 To localhost the django project:
