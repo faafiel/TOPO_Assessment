@@ -297,12 +297,9 @@
 					filter_range_label.push(c1_labels[start]);
 					filter_range_data.push(c1_chart_data[start]);
 				}
-				console.log(filter_range_data)
-				console.log(filter_range_label)
-				console.log(industry_quarter_chart.data)
-				industry_quarter_chart.data.dataset[0].data = filter_range_data;
-				industry_quarter_chart.labels = filter_range_label;
-
+				industry_quarter_chart.data["datasets"][0]["data"] = filter_range_data;
+				industry_quarter_chart.data["labels"] = filter_range_label;
+					
 				industry_quarter_chart.update();
 			}
 
