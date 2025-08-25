@@ -74,11 +74,16 @@
 				float: left;
         		margin-left: 10px auto;
 				padding: 20px; /* Adds internal spacing between content and border */
-
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 				/* Background and Text */
 				color: #040404; /* Sets text color */
 				text-align: center; /* Centers text within the div */
 			}
+
+			.filter-options option {
+				color:black
+			}
+
 			.chart_two {
 				width: 420px; 
 				height: 420px; /* Sets a fixed height */
@@ -173,11 +178,11 @@
 			</tr>
 			<tr>
 				<div class=" chart_one_filter">
-					<select id="start_date_c1" onchange="updateChart()">
-						<!-- <option value="">Select an option</option> -->
+					<select class="filter-options" id="start_date_c1" onchange="filterChart1()">
+						<option class="filter-options" value="">Select an option</option>
 					</select>
-					<select id="end_date_c1" onchange="updateChart()">
-						<!-- <option value="">Select an option</option> -->
+					<select class="filter-options" id="end_date_c1" onchange="filterChart1()">
+						<option class="filter-options" value="">Select an option</option>
 					</select>
 					<button onclick = "filterChart1()" id="filter_chart1"> Filter Chart</button>
 				</div>
@@ -209,7 +214,6 @@
 				drawPieGraph(data, 'company_performance');
 				populate_start_dropdown(data, 'start_date_c1');
 				populate_end_dropdown(data, 'end_date_c1');
-				console.log("drawing");
 			},
 			error: function(error_data) {
 				console.log(error_data);
@@ -218,73 +222,47 @@
 			
 			// document.getElementById('getDataButton').addEventListener('click', function())
 // ================================================================================================
-			function drawLineGraph(data, id) {
-				var c1_labels = data.c1_labels;
-				var c1_chart_label = data.c1_chart_label;
-				var c1_chart_data = data.c1_chart_data;
-				var ctx = document.getElementById(id).getContext('2d');
-				var chart = new Chart(ctx, {
-					// The type of chart we want to create
-					type: 'line',
-
-					// The data for our dataset
-					data: {
-					labels: c1_labels,
-					datasets: [{
-						label: c1_chart_label,
-						backgroundColor: 'rgb(255, 100, 200)',
-						borderColor: 'rgb(55, 99, 132)',
-						data: c1_chart_data,
-					}]
-					},
-
-					// Configuration options go here
-					options: {
-					scales: {
-						xAxes: [{
-						display: true
-						}],
-						yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-						}]
-					}
-					}
-				});
-			}
+			
 			const start_year_dropdown = document.getElementById('start_date_c1');
-			const end_year_dropdown = document.getElementById('end_date_c1');
-
-
 
 			function populate_start_dropdown(data, id) {
 				var c1_quarter_year = data.c1_labels;
-				console.log(c1_quarter_year);
 				start_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
 				c1_quarter_year.forEach(optionData => {
 					const option = document.createElement('option');
-					option.value = optionData.value;
-					option.textContent = optionData.label;
+					option.value = optionData;
+					option.textContent = optionData;
 					start_year_dropdown.appendChild(option);
 				});
 			}
 
+			const end_year_dropdown = document.getElementById('end_date_c1');
+
 			function populate_end_dropdown(data, id) {
-				var c1_quarter_year = data.c1_labels;
+				const c1_quarter_year = data.c1_labels;
 				end_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
-				data.c1_quarter_year.forEach(optionData => {
+				c1_quarter_year.forEach(optionData => {
 					const option = document.createElement('option');
-					option.value = optionData.value;
-					option.textContent = optionData.label;
+					option.value = optionData;
+					option.textContent = optionData;
 					end_year_dropdown.appendChild(option);
 				});
 			}
 
-
-			
-
 			function filterChart1() {
+
+				$.ajax({
+				method: "GET",
+				url: '/chart_data',
+				success: function(data) {
+					var c1_labels = data.c1_labels;
+
+
+				},
+				error: function(error_data) {
+					console.log(error_data);
+				}
+				})
 				const filterValue = parseInt(document.getElementById('filter_chart1').value);
 
 				// Filter the data based on the filterValue
@@ -359,6 +337,42 @@
 					}
 				}
 			});
+			}
+
+			function drawLineGraph(data, id) {
+				var c1_labels = data.c1_labels;
+				var c1_chart_label = data.c1_chart_label;
+				var c1_chart_data = data.c1_chart_data;
+				var ctx = document.getElementById(id).getContext('2d');
+				var chart = new Chart(ctx, {
+					// The type of chart we want to create
+					type: 'line',
+
+					// The data for our dataset
+					data: {
+					labels: c1_labels,
+					datasets: [{
+						label: c1_chart_label,
+						backgroundColor: 'rgb(255, 100, 200)',
+						borderColor: 'rgb(55, 99, 132)',
+						data: c1_chart_data,
+					}]
+					},
+
+					// Configuration options go here
+					options: {
+					scales: {
+						xAxes: [{
+						display: true
+						}],
+						yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+						}]
+					}
+					}
+				});
 			}
 		</script>
 	<body>
