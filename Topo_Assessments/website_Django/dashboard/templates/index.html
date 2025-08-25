@@ -159,9 +159,9 @@
 				<div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNav">
 					<div class="navbar-nav">
 						<!-- buttons -->
-						 <!-- <a href="/export_json" download="unified_Data.json">
+						  <a href="/export_json" download="unified_Data.json">
 							<button type="button" class="nav-button d-none d-lg-block" id="export_JSON" > Export JSON </button>
-						 </a> -->
+						 </a> 
 						<button type="button" class="nav-button d-none d-lg-block" id="admin_page" onclick="location.href='{% url 'admin:index'  %}'" > Admin Account </button>
 					</div>
 				</div>
@@ -254,16 +254,17 @@
 				method: "GET",
 				url: '/chart_data',
 				success: function(data) {
-					var c1_labels = data.c1_labels;
-					var c1_chart_data = data.c1_chart_data;
-					console.log(c1_chart_data)
+					update_c1(data);
 				},
 				error: function(error_data) {
 					console.log(error_data);
 				}
 				})
 			}
-			function meow() {
+			function update_c1(data) {
+				console.log("inside update function")
+				var c1_labels = data.c1_labels;
+				var c1_chart_data = data.c1_chart_data;
 				var start_date_val = document.getElementById("start_date_c1");
 				var end_date_val = document.getElementById("end_date_c1");
 
@@ -277,23 +278,29 @@
 				var end;
 				filter_range_data = []
 				filter_range_label = []
-				try{
-					for (let i = 0; i < len(c1_labels); i++)
+				
+					for (var i = 0; i < c1_labels.length; i++)
 						if (c1_labels[i] == start_date_val)
 							start = i
-
 						if (c1_labels[i] == end_date_val)
 							end = i
 					if (end >= start) {
 
 					} 
-				} catch(error){
-					console.log("error")
-				}
+				
+				console.log("meow")
+				console.log(start)
+				console.log("woof")
 				for (start; start < end; start++)
-					filter_range_label.append(c1_labels[start])
-					filter_range_data.append(c1_chart_data[start])
-
+					// console.log(c1_labels[start])
+					// console.log(c1_chart_data[start])
+					console.log(start)
+					console.log(end)
+					// console.log(c1_labels)
+				
+					filter_range_label.push(c1_labels[start])
+					filter_range_data.push(c1_chart_data[start])
+					console.log(filter_range_label)	
 				// Update the chart
 				industry_quarter_chart.data.labels = filter_range_label;
 				industry_quarter_chart.data.datasets[0].data = filter_range_data;
