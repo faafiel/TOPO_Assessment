@@ -10,7 +10,6 @@ from rest_framework.views import APIView
 from django.http import JsonResponse
 from dashboard.models import *
 from .serializers import *
-from .utils import *
 from pathlib import Path
 
 def index_page(request):
@@ -119,20 +118,16 @@ class ChartData(APIView):
 
                     "c2_labels":c2_labels,
                     "c2_chart_label":c2_chart_label,
-                    "c2_chart_data":c2_chart_data
-
-                    
+                    "c2_chart_data":c2_chart_data    
              }
         return Response(data)
 
 class Export(APIView):
 
-    def get(request, file_name='unified_Data.json'):
+    def get(request, file_name='unified_Data.json', format = None):
         print("help")
-        BASE_DIR = Path(__file__)
-        print(BASE_DIR)
-        file_path = os.path.join(BASE_DIR, '.', file_name)
-        print("help")
+        # BASE_DIR = Path(__file__)
+        file_path = os.path.join(".", file_name)
         print(file_path)
         if os.path.exists(file_path):
             return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
