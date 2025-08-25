@@ -5,7 +5,7 @@ Project is a uv venv that contains a django project.
 To localhost the django project:
 
 _Setting up_
-1) "cd C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django" _or your equivalent address_
+1) cd to your equivalent address of "cd C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django". This is the directory structure.
 2) Run "python manage.py makemigrations"
 3) Run "python manage.py migrate"
 4) Run "python manage.py makemigrations dashboards 0021"
