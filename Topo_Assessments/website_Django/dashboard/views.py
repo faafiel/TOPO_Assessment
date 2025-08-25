@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 
 from django.http import JsonResponse
 from dashboard.models import *
-from .serializers import *
 from pathlib import Path
 
 def index_page(request):
