@@ -121,15 +121,22 @@ class ChartData(APIView):
              }
         return Response(data)
 
-# class Export(APIView):
+class Export(APIView):
 
-#     def get(request, file_name='unified_Data.json', format = None):
-#         print("help")
-#         # BASE_DIR = Path(__file__)
-#         file_path = os.path.join(".", file_name)
-#         print(file_path)
-#         if os.path.exists(file_path):
-#             return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
-#         else:
-#             # Handle file not found error
-#             pass
+    def get(request, file_name='unified_Data.json', format = None):
+        print("help")
+        # BASE_DIR = Path(__file__)
+        file_path = os.path.join(".", file_name)
+        print(file_path)
+        if os.path.exists(file_path):
+            return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
+        else:
+            # Handle file not found error
+            pass
+
+    # def serve_uploaded_file(request, filename):
+    #     file_path = os.path.join(settings.MEDIA_ROOT, filename)
+    #     if os.path.exists(file_path):
+    #         return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
+    #     else:
+    #         pass

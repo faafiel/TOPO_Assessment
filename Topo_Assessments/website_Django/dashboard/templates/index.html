@@ -62,8 +62,6 @@
 				float: left;
         		margin-left: 10px auto;
 				padding: 20px; /* Adds internal spacing between content and border */
-
-				/* Background and Text */
 				background-color: rgb(255, 255, 255); /* Sets background color */
 				color: #333; /* Sets text color */
 				text-align: center; /* Centers text within the div */
@@ -75,7 +73,6 @@
         		margin-left: 10px auto;
 				padding: 20px; /* Adds internal spacing between content and border */
 				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				/* Background and Text */
 				color: #040404; /* Sets text color */
 				text-align: center; /* Centers text within the div */
 			}
@@ -90,15 +87,12 @@
 				float: 'right';
         		margin-left: 500px ;
 				padding: 20px; /* Adds internal spacing between content and border */
-
-				/* Background and Text */
 				background-color: rgb(255, 255, 255); /* Sets background color */
 				color: #333; /* Sets text color */
 				text-align: center; /* Centers text within the div */
 			}
 
 			@media screen and (max-width: 1560px) {					
-				/* Styles for big screens with little height */
 				.navbar-custom {
 					padding-top: 40px;
 					padding-bottom: 40px;
@@ -106,7 +100,6 @@
 			}
 			
 			@media screen and (max-width: 990px) {
-				/* Styles for small screens or mobile devices */
 				.navbar-custom {
 					padding-top: 15px;
 					padding-bottom: 10px;
@@ -114,18 +107,18 @@
 			    
 				.navbar-brand {
 			        margin-bottom: 10px;
-			        width: 20%; /* Adjust the logo width for better responsiveness */
-			        text-align: center; /* Center-align the logo */
+			        width: 20%; 
+			        text-align: center; 
 			    }
 			
 			    .nav-button {      
-					display: inline-block; /* Make nav-button inline */
-			        margin-bottom: 10px; /* Add spacing between nav-buttons */
+					display: inline-block; 
+			        margin-bottom: 10px; 
 			    }
 			
 			    .navbar-nav {
-			        flex-direction: column; /* Stack navbar items vertically */
-					align-items: center; /* Center-align navbar items */
+			        flex-direction: column; 
+					align-items: center;
 			    }
 			
 			    .navbar-nav, .nav-item {
@@ -134,14 +127,11 @@
 			    }
 
 				.scroll-box {	
-					/* width: 800px; */
 					max-height: 600px;
 					overflow-y: scroll;
-					/* border: 1px solid #a12424; */
-					/* padding: 10px; */
   					display: grid;
-					grid-template-columns: 1fr 1fr 1fr; /* Creates three equal-width columns */
-					grid-template-rows: auto auto; /* Rows will automatically size to content */
+					grid-template-columns: 1fr 1fr 1fr; 
+					grid-template-rows: auto auto; 
 					gap: 10px;
        			 }
 			
@@ -160,7 +150,7 @@
 					<div class="navbar-nav">
 						<!-- buttons -->
 						  <a href="/export_json" download="unified_Data.json">
-							<button type="button" class="nav-button d-none d-lg-block" id="export_JSON" > Export JSON </button>
+							<button type="button" class="nav-button d-none d-lg-block" id="export_JSON" > Export	 </button>
 						 </a> 
 						<button type="button" class="nav-button d-none d-lg-block" id="admin_page" onclick="location.href='{% url 'admin:index'  %}'" > Admin Account </button>
 					</div>
@@ -173,7 +163,7 @@
 					<canvas id="industry_quarter_chart" width="500" height="500"></canvas>
 				</div>
 				<div class="chart_two">
-					<canvas id="company_performance" width="500" height="500"></canvas>
+					<canvas id="company_performance_chart" width="500" height="500"></canvas>
 				</div>
 			</tr>
 			<tr>
@@ -187,8 +177,6 @@
 					<button onclick = "filter_chart_1()" id="filter_chart1"> Filter Chart</button>
 				</div>
 			</tr>
-				
-				
 		</table>
 		
 <!-- =========================================================================================================== -->
@@ -196,9 +184,10 @@
 		<script>
 
 			// Global variables
+			let industry_quarter_chart;		// Chart instance
+			let company_performance_chart;	// Chart instance
 
-			let industry_quarter_chart;
-			let company_performance;
+			
 			// $.ajax({
 			// method: "GET",
 			// url: '/export_json',
@@ -215,10 +204,12 @@
 			method: "GET",
 			url: '/chart_data',
 			success: function(data) {
-				drawLineGraph(data, 'industry_quarter_chart');
-				drawPieGraph(data, 'company_performance');
+				draw_line_graph(data, 'industry_quarter_chart');
+				draw_pie_graph(data, 'company_performance_chart');
 				populate_start_dropdown(data, 'start_date_c1');
 				populate_end_dropdown(data, 'end_date_c1');
+				// populate_c1_dropdown(data, 'start_date_c1', 'end_date_c1');
+
 			},
 			error: function(error_data) {
 				console.log(error_data);
@@ -227,28 +218,28 @@
 			
 // ================================================================================================
 			
+			// const start_year_dropdown = document.getElementById('start_date_c1');
 			const start_year_dropdown = document.getElementById('start_date_c1');
+			const end_year_dropdown = document.getElementById('end_date_c1');
 
-			function populate_start_dropdown(data, id) {
+			function populate_start_dropdown(data, start_id) {
 				let c1_quarter_year = data.c1_labels;
-				start_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
-				c1_quarter_year.forEach(optionData => {
+				start_year_dropdown.innerHTML = '<option value="">Filter: Start Quarter</option>'; 
+				c1_quarter_year.forEach(option_data => {
 					const option = document.createElement('option');
-					option.value = optionData;
-					option.textContent = optionData;
+					option.value = option_data;
+					option.textContent = option_data;
 					start_year_dropdown.appendChild(option);
 				});
 			}
 
-			const end_year_dropdown = document.getElementById('end_date_c1');
-
 			function populate_end_dropdown(data, id) {
 				const c1_quarter_year = data.c1_labels;
-				end_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
-				c1_quarter_year.forEach(optionData => {
+				end_year_dropdown.innerHTML = '<option value="">Filter: End Quarter</option>';
+				c1_quarter_year.forEach(option_data => {
 					const option = document.createElement('option');
-					option.value = optionData;
-					option.textContent = optionData;
+					option.value = option_data;
+					option.textContent = option_data;
 					end_year_dropdown.appendChild(option);
 				});
 			}
@@ -266,9 +257,8 @@
 				}
 				})
 			}
-			
 
-			async function update_c1(data) {
+			function update_c1(data) {
 				let c1_labels = data.c1_labels;
 				let c1_chart_data = data.c1_chart_data;
 				let start_date_val = document.getElementById("start_date_c1");
@@ -284,15 +274,16 @@
 				let end;
 				filter_range_data = [];
 				filter_range_label = [];
-					for (let i = 0; i < c1_labels.length; i++) {
-						if (c1_labels[i] == selected_start_val){
-							start = i;
-						}
-						if (c1_labels[i] == selected_end_val) {
-							end = i;
-						}
+
+				for (let i = 0; i < c1_labels.length; i++) {
+					if (c1_labels[i] == selected_start_val){
+						start = i;
 					}
-				
+					if (c1_labels[i] == selected_end_val) {
+						end = i;
+					}
+				}
+		
 				for (start; start <= end; start++) {
 					filter_range_label.push(c1_labels[start]);
 					filter_range_data.push(c1_chart_data[start]);
@@ -304,12 +295,13 @@
 			}
 
 
-			function drawPieGraph(data, id) {
+			function draw_pie_graph(data, id) {
 			let c2_labels = data.c2_labels;
 			let c2_chart_label = data.c2_chart_label;
 			let c2_chart_data = data.c2_chart_data;
 			let ctx = document.getElementById(id).getContext('2d');
-			company_performance = new Chart(ctx, {
+			
+			company_performance_chart = new Chart(ctx, {
 				type: 'pie',
 				data: {
 					labels: c2_labels,
@@ -346,7 +338,6 @@
 						text: "Client activity breakdown by company",
 						position: top
 					},
-					// legend: {position:bottom},
 					plugins: {
 						datalabels: {
 							formatter: (value, context) => {
@@ -361,16 +352,14 @@
 			});
 			}
 
-			function drawLineGraph(data, id) {
+			function draw_line_graph(data, id) {
 				let c1_labels = data.c1_labels;
 				let c1_chart_label = data.c1_chart_label;
 				let c1_chart_data = data.c1_chart_data;
 				let ctx = document.getElementById(id).getContext('2d');
+				
 				industry_quarter_chart = new Chart(ctx, {
-					// The type of chart we want to create
 					type: 'line',
-
-					// The data for our dataset
 					data: {
 						labels: c1_labels,
 						datasets: [{
