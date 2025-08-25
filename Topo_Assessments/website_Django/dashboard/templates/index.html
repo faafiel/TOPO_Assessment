@@ -178,13 +178,13 @@
 			</tr>
 			<tr>
 				<div class=" chart_one_filter">
-					<select class="filter-options" id="start_date_c1" onchange="filterChart1()">
+					<select class="filter-options" id="start_date_c1">
 						<option class="filter-options" value="">Select an option</option>
 					</select>
-					<select class="filter-options" id="end_date_c1" onchange="filterChart1()">
+					<select class="filter-options" id="end_date_c1">
 						<option class="filter-options" value="">Select an option</option>
 					</select>
-					<button onclick = "filterChart1()" id="filter_chart1"> Filter Chart</button>
+					<button onclick = "filter_chart_1()" id="filter_chart1"> Filter Chart</button>
 				</div>
 			</tr>
 				
@@ -220,7 +220,6 @@
 			}
 			})
 			
-			// document.getElementById('getDataButton').addEventListener('click', function())
 // ================================================================================================
 			
 			const start_year_dropdown = document.getElementById('start_date_c1');
@@ -249,37 +248,56 @@
 				});
 			}
 
-			function filterChart1() {
+			function filter_chart_1() {
 
 				$.ajax({
 				method: "GET",
 				url: '/chart_data',
 				success: function(data) {
 					var c1_labels = data.c1_labels;
-
-
+					var c1_chart_data = data.c1_chart_data;
+					console.log(c1_chart_data)
 				},
 				error: function(error_data) {
 					console.log(error_data);
 				}
 				})
-				const filterValue = parseInt(document.getElementById('filter_chart1').value);
+			}
+			function meow() {
+				var start_date_val = document.getElementById("start_date_c1");
+				var end_date_val = document.getElementById("end_date_c1");
 
-				// Filter the data based on the filterValue
-				const filteredLabels = [];
-				const filteredData = [];
+				var selected_start_val = start_date_val.options[start_date_val.selectedIndex].value;
+				var selected_end_val = end_date_val.options[end_date_val.selectedIndex].value;
+				// Iterate over full list and slice out the specified period
+				// First iteration over list is to identify range. 
+				// Second iteration is to create output array to update chart.
 
-				originalData.datasets[0].data.forEach((value, index) => {
-					if (value > filterValue) {
-						filteredData.push(value);
-						filteredLabels.push(originalData.labels[index]);
-					}
-				});
+				var start;
+				var end;
+				filter_range_data = []
+				filter_range_label = []
+				try{
+					for (let i = 0; i < len(c1_labels); i++)
+						if (c1_labels[i] == start_date_val)
+							start = i
+
+						if (c1_labels[i] == end_date_val)
+							end = i
+					if (end >= start) {
+
+					} 
+				} catch(error){
+					console.log("error")
+				}
+				for (start; start < end; start++)
+					filter_range_label.append(c1_labels[start])
+					filter_range_data.append(c1_chart_data[start])
 
 				// Update the chart
-				myChart.data.labels = filteredLabels;
-				myChart.data.datasets[0].data = filteredData;
-				myChart.update();
+				industry_quarter_chart.data.labels = filter_range_label;
+				industry_quarter_chart.data.datasets[0].data = filter_range_data;
+				industry_quarter_chart.update();
 			}
 
 			function drawPieGraph(data, id) {
@@ -358,20 +376,6 @@
 						data: c1_chart_data,
 					}]
 					},
-
-					// Configuration options go here
-					options: {
-					scales: {
-						xAxes: [{
-						display: true
-						}],
-						yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-						}]
-					}
-					}
 				});
 			}
 		</script>
