@@ -273,34 +273,28 @@
 				// Iterate over full list and slice out the specified period
 				// First iteration over list is to identify range. 
 				// Second iteration is to create output array to update chart.
-
 				var start;
 				var end;
 				filter_range_data = []
 				filter_range_label = []
-				
-					for (var i = 0; i < c1_labels.length; i++)
-						if (c1_labels[i] == start_date_val)
-							start = i
-						if (c1_labels[i] == end_date_val)
-							end = i
+					for (let i = 0; i < c1_labels.length; i++) {
+						if (c1_labels[i] == selected_start_val){
+							start = i;
+						}
+						if (c1_labels[i] == selected_end_val) {
+							end = i;
+						}
+					}
 					if (end >= start) {
 
 					} 
 				
-				console.log("meow")
-				console.log(start)
-				console.log("woof")
-				for (start; start < end; start++)
-					// console.log(c1_labels[start])
-					// console.log(c1_chart_data[start])
-					console.log(start)
-					console.log(end)
-					// console.log(c1_labels)
-				
-					filter_range_label.push(c1_labels[start])
-					filter_range_data.push(c1_chart_data[start])
-					console.log(filter_range_label)	
+				for (start; start <= end; start++) {
+					filter_range_label.push(c1_labels[start]);
+					filter_range_data.push(c1_chart_data[start]);
+					console.log(filter_range_label);
+					console.log(filter_range_data);	
+				}
 				// Update the chart
 				industry_quarter_chart.data.labels = filter_range_label;
 				industry_quarter_chart.data.datasets[0].data = filter_range_data;
