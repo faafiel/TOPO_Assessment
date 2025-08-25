@@ -290,8 +290,7 @@ class Document(models.Model):
 
     @classmethod
     def create_document (self, id, file):
-        doc_obj = Company(id, file
-                         )
+        doc_obj = Company(id, file)
         return doc_obj
 
 #=====================================================================================

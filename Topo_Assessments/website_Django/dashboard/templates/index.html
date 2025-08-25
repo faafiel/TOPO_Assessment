@@ -188,17 +188,17 @@
 			let company_performance_chart;	// Chart instance
 
 			
-			// $.ajax({
-			// method: "GET",
-			// url: '/export_json',
-			// success: function(file) {
-			// 	export_file(file);
-			// 	console.log("exporting");
-			// },
-			// error: function(error_data) {
-			// 	console.log(error_data);
-			// }
-			// })
+			$.ajax({
+			method: "GET",
+			url: '/export_json',
+			success: function(file) {
+				filter_chart_c1(file);
+				console.log("exporting");
+			},
+			error: function(error_data) {
+				console.log(error_data);
+			}
+			})
 
 			$.ajax({
 			method: "GET",
@@ -244,7 +244,7 @@
 				});
 			}
 
-			function filter_chart_1() {
+			function filter_chart_c1() {
 
 				$.ajax({
 				method: "GET",

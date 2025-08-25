@@ -126,7 +126,7 @@ class Export(APIView):
     def get(request, file_name='unified_Data.json', format = None):
         print("help")
         # BASE_DIR = Path(__file__)
-        file_path = os.path.join(".", file_name)
+        file_path = os.path.join(settings.MEDIA_ROOT, file_name)
         print(file_path)
         if os.path.exists(file_path):
             return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
