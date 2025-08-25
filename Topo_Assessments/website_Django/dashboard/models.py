@@ -1,8 +1,5 @@
 import json
-
 from django.db import models
-
-# Create your models here.
 import os
 from django.conf import settings
 
@@ -10,16 +7,18 @@ class Industry(models.Model):
     name = models.CharField(max_length=200, primary_key=True)
     industry_Performance_List = models.JSONField(null=True, blank=True, default=list)
     company_List = models.JSONField(null=True, blank=True, default=list)
-    # variables
     
-
 
     @classmethod
     def create_Industry (self, file):
-        # if self.pk is None:  # create if no exisiting pk
         name = "1"
         industry_performance_list = []
         company_list = []
+
+        # create model instance to store file
+        tmp_doc = Document.create_document(1, file)
+        # tmp_doc.save()
+
         # nested for loop to extract out data from json file and create sub-classes
         for industry_attribute in file:
             if industry_attribute == "name":
@@ -282,8 +281,18 @@ class A_Revenue_Distribution(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField()
+    id = models.IntegerField(primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
+
+class Document(models.Model):
+    # title = models.CharField(max_length=255)
+    file = models.FileField(upload_to='.') 
+
+    @classmethod
+    def create_document (self, id, file):
+        doc_obj = Company(id, file
+                         )
+        return doc_obj
 
 #=====================================================================================
 # Import and initialise entire db
@@ -294,5 +303,4 @@ with open(file_path, 'r') as file:
 tmp_industry = Industry.create_Industry(data)
 
 
-#TODO
 

@@ -12,10 +12,6 @@ from dashboard.models import *
 from .serializers import *
 from .utils import *
 
-# def index(request):
-#     return render(request, 'index.html')
-
-
 
 def index_page(request):
     return render(request, 'index.html')
@@ -24,59 +20,113 @@ def charts_page(request):
     template = loader.get_template('charts.html')
     return HttpResponse(template.render())
 
-#==================================================================================================
-# def get_industry_quarter_chart(request):
-#     print("printing help")
-
-#     query_set = Industry_Quarters.objects()
-#     print(query_set)
-
-#     quarter_list = []
-#     revenue_list = []
-
-#     for obj in query_set:
-#         quarter_list.append(obj.quarter)
-#         revenue_list.append(obj.revenue)
-
-
-#     return render(request, 'index.html',{'labels':quarter_list,
-#                                          'revenue':revenue_list})
-
 class ChartData(APIView):
-    authentication_classes = []
-    permission_classes = []
+
  
     def get(self, request, format = None):
-
+        
+        # Chart 1 ========================================================================================================
         quarter = Industry_Quarters.objects.values_list('quarter')
         year = Industry_Quarters.objects.values_list('year')
         revenue = Industry_Quarters.objects.values_list('revenue')
-        print(revenue)
 
-        quarter_year = []
+        c1_quarter_year = []
         counter = 0
         for each in quarter:
             tmp = str(year[counter]) + "_" + str(quarter[counter])
-            tmp.replace(",", "")
-            tmp.replace("'", "")
-            tmp.replace("(", "")
-            tmp.replace(")", "")
-            print(type(tmp))
-            quarter_year.append(tmp)
+            tmp = tmp.replace(",", "")
+            tmp = tmp.replace("'", "")
+            tmp =  tmp.replace("(", "")
+            tmp =  tmp.replace(")", "")
+
+            c1_quarter_year.append(tmp)
             counter += 1
 
-        revenue_list = []
+        c1_revenue_list = []
         rev_counter = 0
         for each in revenue:
             tmp = str(revenue[rev_counter])
-            tmp.replace(",", "")
+            tmp = tmp.replace(",", "")
+            tmp = tmp.replace("'", "")
+            tmp =  tmp.replace("(", "")
+            tmp =  tmp.replace(")", "")
+            c1_revenue_list.append(tmp)
             rev_counter += 1
 
-        chartLabel = "my data"
-        chartdata = [0, 10, 5, 2, 20, 30, 45]
+        # Chart 2 ========================================================================================================
+        client_list = Client.objects.filter(company_id=1)
+        gym = []
+        pool = []
+        personal_training = []
+        dance_class = []
+        swimming_class = []
+        yoga_class = []
+        climbing_wall = []
+        tennis_court = []
+
+        for client in client_list:
+            tmp = str(client.activity)
+            tmp = tmp.replace(",", "")
+            tmp = tmp.replace("'", "")
+            tmp =  tmp.replace("(", "")
+            tmp =  tmp.replace(")", "")
+            if tmp == "Gym":
+                gym.append(client)
+            elif tmp == "Pool":
+                pool.append(client)
+            elif tmp == "Personal Training":
+                personal_training.append(client) 
+            elif tmp == "Dance Class":
+                dance_class.append(client)
+            elif tmp == "Swimming Class":
+                swimming_class.append(client)
+            elif tmp == "Yoga Class":
+                yoga_class.append(client)
+            elif tmp == "Climbing Wall":
+                climbing_wall.append(client)
+            elif tmp == "Tennis Court":
+                tennis_court.append(client)
+            else:
+                print("Not Captured")
+
+        c2_chart_data = []
+        c2_chart_data.append(len(gym))
+        c2_chart_data.append(len(pool))
+        c2_chart_data.append(len(personal_training))
+        c2_chart_data.append(len(dance_class))
+        c2_chart_data.append(len(swimming_class))
+        c2_chart_data.append(len(yoga_class))
+        c2_chart_data.append(len(climbing_wall))
+        c2_chart_data.append(len(tennis_court))
+
+        print(c2_chart_data)
+        c2_labels = ["Gym", 
+                          "Pool", 
+                          "Personal training",
+                          "Dance class", 
+                          "Swimming class",
+                          "Yoga class",
+                          "Climbing wall",
+                          "Tennis court"]
+
+
+        c1_chart_label = "Industry Quarter Revenue"
+        c2_chart_label = "Client activity breakdown by company"
         data ={
-                     "labels":quarter_year,
-                     "chartLabel":chartLabel,
-                     "chartdata":revenue,
+                    "c1_labels":c1_quarter_year,
+                    "c1_chart_label":c1_chart_label,
+                    "c1_chart_data":c1_revenue_list,
+
+                    "c2_labels":c2_labels,
+                    "c2_chart_label":c2_chart_label,
+                    "c2_chart_data":c2_chart_data
+
+                    
              }
         return Response(data)
+    
+def export_json(request):
+
+    json_file = Document.objects.all()
+
+    return HttpResponse(json_file.render())

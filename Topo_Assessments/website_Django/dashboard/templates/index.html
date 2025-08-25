@@ -1,7 +1,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 
 <!-- new libraries  -->
 <!-- Latest compiled and minified CSS -->
@@ -27,7 +28,7 @@
 			}
 			
 			body {
-				font-family: Arial, sans-serif;
+				font-family: Arial, Helvetica, sans-serif;
 				text-align: center; /* Centers content horizontally */
 				overflow: hidden;
 			}
@@ -50,11 +51,11 @@
 				border: none;
 				border-radius: 5px;
 				color: white;
-				padding: 10px 25px;
+				padding: 8px 20px;
 				text-align: center;
 				text-decoration: none;
 				display: inline-block;
-				font-size: 16px;
+				font-size: 12px;
 				margin: 4px 2px;
 				transition-duration: 0.2s;
 				cursor: pointer;
@@ -66,11 +67,8 @@
 			}
 			.chart_one {
 				/* Size */
-				width: 1000px; /* Sets a fixed width */
-				height: 400px; /* Sets a fixed height */
-				/* Or, for responsive width/height: */
-				/* width: 80%; */
-				/* height: auto; */ /* Height adjusts to content */
+				width: 420px;
+				height: 420px;
 
 				/* Spacing and Positioning */
 				float: left;
@@ -82,23 +80,42 @@
 				color: #333; /* Sets text color */
 				text-align: center; /* Centers text within the div */
 			}
-			
-			
-			footer {
-				text-align:center;
-				background-color: #0A1E40;
-				padding: 20px;
-				position: fixed;
-				bottom: 0;
-				width: 100%;
-				color: white;
+			.chart_one_filter {
+				/* Size */
+				width: 420px; 
+				height: 60px;
+
+				/* Spacing and Positioning */
+				float: left;
+        		margin-left: 10px auto;
+				padding: 20px; /* Adds internal spacing between content and border */
+
+				/* Background and Text */
+				background-color: rgb(255, 255, 255); /* Sets background color */
+				color: #333; /* Sets text color */
+				text-align: center; /* Centers text within the div */
 			}
-			
+			.chart_two {
+				/* Size */
+				width: 420px; 
+				height: 420px; /* Sets a fixed height */
+
+				/* Spacing and Positioning */
+				float: 'right';
+        		margin-left: 500px ;
+				padding: 20px; /* Adds internal spacing between content and border */
+
+				/* Background and Text */
+				background-color: rgb(255, 255, 255); /* Sets background color */
+				color: #333; /* Sets text color */
+				text-align: center; /* Centers text within the div */
+			}
+
 			@media screen and (max-width: 1560px) {					
 				/* Styles for big screens with little height */
 				.navbar-custom {
-					padding-top: 50px;
-					padding-bottom: 50px;
+					padding-top: 40px;
+					padding-bottom: 40px;
 				}
 			}
 			
@@ -106,7 +123,7 @@
 				/* Styles for small screens or mobile devices */
 				.navbar-custom {
 					padding-top: 15px;
-					padding-bottom: 60px;
+					padding-bottom: 10px;
 				}
 			    
 				.navbar-brand {
@@ -127,34 +144,21 @@
 			
 			    .navbar-nav, .nav-item {
 			        margin-right: 0;
-			        margin-bottom: 10px; /* Add spacing between navbar items */
+			        margin-bottom: 10px; 
 			    }
-				
-				.navbar-toggler {
-					padding: 0.25rem 0.75rem;
-					font-size: 1.25rem;
-					line-height: 1;
-					color: #000; /* Text color */
-					background-color: #A3CAF9; /* Background color */
-					border: 3px solid #E9ECEE; /* Border */
-					border-radius: 0.25rem; /* Border radius */
-					transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
-								border-color 0.15s ease-in-out; /* Transition effect */
-				}
-			
-				.navbar-toggler:hover {
-					color: #fff; /* Text color on hover */
-					background-color: #6E9FC1; /* Background color on hover */
-				}
 
-				.scroll-box {
-					width: 1000px;
-					height: 400px;
-					overflow: scroll;
-					border: 1px solid #a12424;
-					padding: 10px;
-        }
-				
+				.scroll-box {	
+					/* width: 800px; */
+					max-height: 600px;
+					overflow-y: scroll;
+					/* border: 1px solid #a12424; */
+					/* padding: 10px; */
+  					display: grid;
+					grid-template-columns: 1fr 1fr 1fr; /* Creates three equal-width columns */
+					grid-template-rows: auto auto; /* Rows will automatically size to content */
+					gap: 10px;
+       			 }
+			
 			}
 		</style>
 	</head>
@@ -169,35 +173,32 @@
 				<div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNav">
 					<div class="navbar-nav">
 						<!-- buttons -->
-						<button type="button" class="nav-button d-none d-lg-block" id="import_JSON" > Import JSON </button>
 						<button type="button" class="nav-button d-none d-lg-block" id="export_JSON" > Export JSON </button>
-						<button type="button" class="nav-button d-none d-lg-block active" id="Charts" onclick="location.href='{% url 'admin:index'  %}'" > Admin Account </button>
-							<form method="post" enctype="multipart/form-data">
-								{% csrf_token %}
-								<input type="file"  name="json_file">
-								<button type="submit" class="nav-button d-none d-lg-block active">Import</button>
-							</form>
+						<button type="button" class="nav-button d-none d-lg-block" id="admin_page" onclick="location.href='{% url 'admin:index'  %}'" > Admin Account </button>
 					</div>
 				</div>
 			</div>
 		</nav>
-		<div class= "scroll-box">
+		<table class= "scroll-box">
+			<tr>
 				<div class="chart_one">
 					<canvas id="industry_quarter_chart" width="500" height="500"></canvas>
 				</div>
-				<div class="chart_one">
+				<div class="chart_two">
 					<canvas id="company_performance" width="500" height="500"></canvas>
 				</div>
-		</div>
-		<!-- Footer -->
-		<footer id="footer">
-			<script>
-				// Get the current year
-				var currentYear = new Date().getFullYear();
-				// Set the content of the footer to display only the current year
-				document.getElementById("footer").innerHTML = "&copy; " + currentYear + "  TOPO ";
-			</script>
-		</footer>
+			</tr>
+			<tr>
+				<div class=" chart_one_filter">
+					<input type="date" class="input_design" id="start_date" > </input>
+					<input type="date" class="input_design" id="end_date" > </input>
+					<button onclick = "filterChart1()" id="filter_chart1"> Filter Chart</button>
+				</div>
+			</tr>
+				
+				
+		</table>
+		
 <!-- =========================================================================================================== -->
 
 		<script>
@@ -208,7 +209,7 @@
 			url: endpoint,
 			success: function(data) {
 				drawLineGraph(data, 'industry_quarter_chart');
-				drawBarGraph(data, 'company_performance');
+				drawPieGraph(data, 'company_performance');
 				console.log("drawing");
 			},
 			error: function(error_data) {
@@ -218,9 +219,9 @@
 
 
 			function drawLineGraph(data, id) {
-			var labels = data.labels;
-			var chartLabel = data.chartLabel;
-			var chartdata = data.chartdata;
+			var c1_labels = data.c1_labels;
+			var c1_chart_label = data.c1_chart_label;
+			var c1_chart_data = data.c1_chart_data;
 			var ctx = document.getElementById(id).getContext('2d');
 			var chart = new Chart(ctx, {
 				// The type of chart we want to create
@@ -228,12 +229,12 @@
 
 				// The data for our dataset
 				data: {
-				labels: labels,
+				labels: c1_labels,
 				datasets: [{
-					label: chartLabel,
+					label: c1_chart_label,
 					backgroundColor: 'rgb(255, 100, 200)',
 					borderColor: 'rgb(55, 99, 132)',
-					data: chartdata,
+					data: c1_chart_data,
 				}]
 				},
 
@@ -250,33 +251,56 @@
 					}]
 				}
 				}
-
 			});
 			}
 
-			function drawBarGraph(data, id) {
-			var labels = data.labels;
-			var chartLabel = data.chartLabel;
-			var chartdata = data.chartdata;
+			function filterChart1() {
+				const filterValue = parseInt(document.getElementById('filter_chart1').value);
+
+				// Filter the data based on the filterValue
+				const filteredLabels = [];
+				const filteredData = [];
+
+				originalData.datasets[0].data.forEach((value, index) => {
+					if (value > filterValue) {
+						filteredData.push(value);
+						filteredLabels.push(originalData.labels[index]);
+					}
+				});
+
+				// Update the chart
+				myChart.data.labels = filteredLabels;
+				myChart.data.datasets[0].data = filteredData;
+				myChart.update();
+			}
+
+			function drawPieGraph(data, id) {
+			var c2_labels = data.c2_labels;
+			var c2_chart_label = data.c2_chart_label;
+			var c2_chart_data = data.c2_chart_data;
 			var ctx = document.getElementById(id).getContext('2d');
 			var myChart = new Chart(ctx, {
-				type: 'bar',
+				type: 'pie',
 				data: {
-				labels: labels,
+				labels: c2_labels,
 				datasets: [{
-					label: chartLabel,
-					data: chartdata,
+					label: c2_chart_label,
+					data: c2_chart_data,
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
 					'rgba(255, 206, 86, 0.2)',
 					'rgba(75, 192, 192, 0.2)',
 					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
+					'rgba(255, 159, 64, 0.2)',
+					'rgba(100, 159, 100, 0.2)',
+					'rgba(69, 2, 200, 0.2)'
 					],
 					borderColor: [
 					'rgba(255, 99, 132, 1)',
 					'rgba(54, 162, 235, 1)',
+					'rgba(100, 159, 100, 0.2)',
+					'rgba(69, 2, 200, 0.2)',
 					'rgba(255, 206, 86, 1)',
 					'rgba(75, 192, 192, 1)',
 					'rgba(153, 102, 255, 1)',
@@ -286,13 +310,23 @@
 				}]
 				},
 				options: {
-				scales: {
-					yAxes: [{
-					ticks: {
-						beginAtZero: true
+					responsive: true,
+					title: {
+						display: true,
+						text: "Client activity breakdown by company",
+						position: top
+					},
+					// legend: {position:bottom},
+					plugins: {
+						datalabels: {
+							formatter: (value, context) => {
+								return value; // Returns the raw data value for each slice
+							},
+							font: {
+								weight: 'bold' // Optional: Set font weight
+							}
+						}
 					}
-					}]
-				}
 				}
 			});
 			}
