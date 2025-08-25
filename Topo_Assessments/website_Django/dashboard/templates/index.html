@@ -76,8 +76,7 @@
 				padding: 20px; /* Adds internal spacing between content and border */
 
 				/* Background and Text */
-				background-color: rgb(255, 255, 255); /* Sets background color */
-				color: #333; /* Sets text color */
+				color: #040404; /* Sets text color */
 				text-align: center; /* Centers text within the div */
 			}
 			.chart_two {
@@ -155,9 +154,9 @@
 				<div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNav">
 					<div class="navbar-nav">
 						<!-- buttons -->
-						 <a href="/export_json" download="unified_Data.json">
+						 <!-- <a href="/export_json" download="unified_Data.json">
 							<button type="button" class="nav-button d-none d-lg-block" id="export_JSON" > Export JSON </button>
-						 </a>
+						 </a> -->
 						<button type="button" class="nav-button d-none d-lg-block" id="admin_page" onclick="location.href='{% url 'admin:index'  %}'" > Admin Account </button>
 					</div>
 				</div>
@@ -174,8 +173,12 @@
 			</tr>
 			<tr>
 				<div class=" chart_one_filter">
-					<input type="date" class="input_design" id="start_date" > </input>
-					<input type="date" class="input_design" id="end_date" > </input>
+					<select id="start_date_c1" onchange="updateChart()">
+						<!-- <option value="">Select an option</option> -->
+					</select>
+					<select id="end_date_c1" onchange="updateChart()">
+						<!-- <option value="">Select an option</option> -->
+					</select>
 					<button onclick = "filterChart1()" id="filter_chart1"> Filter Chart</button>
 				</div>
 			</tr>
@@ -186,17 +189,17 @@
 <!-- =========================================================================================================== -->
 
 		<script>
-			$.ajax({
-			method: "GET",
-			url: '/export_json',
-			success: function(file) {
-				export_file(file);
-				console.log("exporting");
-			},
-			error: function(error_data) {
-				console.log(error_data);
-			}
-			})
+			// $.ajax({
+			// method: "GET",
+			// url: '/export_json',
+			// success: function(file) {
+			// 	export_file(file);
+			// 	console.log("exporting");
+			// },
+			// error: function(error_data) {
+			// 	console.log(error_data);
+			// }
+			// })
 
 			$.ajax({
 			method: "GET",
@@ -204,13 +207,16 @@
 			success: function(data) {
 				drawLineGraph(data, 'industry_quarter_chart');
 				drawPieGraph(data, 'company_performance');
+				populate_start_dropdown(data, 'start_date_c1');
+				populate_end_dropdown(data, 'end_date_c1');
 				console.log("drawing");
 			},
 			error: function(error_data) {
 				console.log(error_data);
 			}
 			})
-
+			
+			// document.getElementById('getDataButton').addEventListener('click', function())
 // ================================================================================================
 			function drawLineGraph(data, id) {
 				var c1_labels = data.c1_labels;
@@ -247,6 +253,36 @@
 					}
 				});
 			}
+			const start_year_dropdown = document.getElementById('start_date_c1');
+			const end_year_dropdown = document.getElementById('end_date_c1');
+
+
+
+			function populate_start_dropdown(data, id) {
+				var c1_quarter_year = data.c1_labels;
+				console.log(c1_quarter_year);
+				start_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
+				c1_quarter_year.forEach(optionData => {
+					const option = document.createElement('option');
+					option.value = optionData.value;
+					option.textContent = optionData.label;
+					start_year_dropdown.appendChild(option);
+				});
+			}
+
+			function populate_end_dropdown(data, id) {
+				var c1_quarter_year = data.c1_labels;
+				end_year_dropdown.innerHTML = '<option value="">Select an option</option>'; // Clear and add default
+				data.c1_quarter_year.forEach(optionData => {
+					const option = document.createElement('option');
+					option.value = optionData.value;
+					option.textContent = optionData.label;
+					end_year_dropdown.appendChild(option);
+				});
+			}
+
+
+			
 
 			function filterChart1() {
 				const filterValue = parseInt(document.getElementById('filter_chart1').value);

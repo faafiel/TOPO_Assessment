@@ -20,7 +20,6 @@ def charts_page(request):
 
 class ChartData(APIView):
 
- 
     def get(self, request, format = None):
         
         # Chart 1 ========================================================================================================
@@ -31,12 +30,14 @@ class ChartData(APIView):
         c1_quarter_year = []
         counter = 0
         for each in quarter:
-            tmp = str(year[counter]) + "_" + str(quarter[counter])
+
+            tmp = str(year[counter]) + " " + str(quarter[counter])
             tmp = tmp.replace(",", "")
             tmp = tmp.replace("'", "")
             tmp =  tmp.replace("(", "")
             tmp =  tmp.replace(")", "")
 
+            
             c1_quarter_year.append(tmp)
             counter += 1
 
@@ -97,39 +98,38 @@ class ChartData(APIView):
         c2_chart_data.append(len(climbing_wall))
         c2_chart_data.append(len(tennis_court))
 
-        print(c2_chart_data)
         c2_labels = ["Gym", 
-                          "Pool", 
-                          "Personal training",
-                          "Dance class", 
-                          "Swimming class",
-                          "Yoga class",
-                          "Climbing wall",
-                          "Tennis court"]
+                    "Pool", 
+                    "Personal training",
+                    "Dance class", 
+                    "Swimming class",
+                    "Yoga class",
+                    "Climbing wall",
+                    "Tennis court"]
 
 
         c1_chart_label = "Industry Quarter Revenue"
         c2_chart_label = "Client activity breakdown by company"
         data ={
-                    "c1_labels":c1_quarter_year,
-                    "c1_chart_label":c1_chart_label,
-                    "c1_chart_data":c1_revenue_list,
+                "c1_labels":c1_quarter_year,
+                "c1_chart_label":c1_chart_label,
+                "c1_chart_data":c1_revenue_list,
 
-                    "c2_labels":c2_labels,
-                    "c2_chart_label":c2_chart_label,
-                    "c2_chart_data":c2_chart_data    
+                "c2_labels":c2_labels,
+                "c2_chart_label":c2_chart_label,
+                "c2_chart_data":c2_chart_data    
              }
         return Response(data)
 
-class Export(APIView):
+# class Export(APIView):
 
-    def get(request, file_name='unified_Data.json', format = None):
-        print("help")
-        # BASE_DIR = Path(__file__)
-        file_path = os.path.join(".", file_name)
-        print(file_path)
-        if os.path.exists(file_path):
-            return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
-        else:
-            # Handle file not found error
-            pass
+#     def get(request, file_name='unified_Data.json', format = None):
+#         print("help")
+#         # BASE_DIR = Path(__file__)
+#         file_path = os.path.join(".", file_name)
+#         print(file_path)
+#         if os.path.exists(file_path):
+#             return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
+#         else:
+#             # Handle file not found error
+#             pass
