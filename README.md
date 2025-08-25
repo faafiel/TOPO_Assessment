@@ -28,5 +28,4 @@ _Localhost address_
 TODO
 
 - Fix HTML titles
-- Fix filter bug
 - Fix export bug
