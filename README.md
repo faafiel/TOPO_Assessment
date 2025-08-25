@@ -14,7 +14,8 @@ _Setting up_
    - The format for this CLI is "python manage.py makemigrations dashboards <migration_prefix>"
   
 _Start Server_
-5)python manage.py runserver    
+
+5) python manage.py runserver    
 
 _Localhost address_
 6) http://127.0.0.1:8000/index/
