@@ -171,7 +171,7 @@
 					<select class="filter-options" id="end_date_c1">
 						<option class="filter-options" value="">Select an option</option>
 					</select>
-					<button onclick = "filter_chart_1()" id="filter_chart1"> Filter Chart</button>
+					<button onclick = "filter_chart_c1()" id="filter_chart1"> Filter Chart</button>
 				</div>
 			</tr>
 		</table>
@@ -185,17 +185,6 @@
 			let company_performance_chart;	// Chart instance
 
 			
-			$.ajax({
-			method: "GET",
-			url: '/export_json',
-			success: function(file) {
-				filter_chart_c1(file);
-				console.log("exporting");
-			},
-			error: function(error_data) {
-				console.log(error_data);
-			}
-			})
 
 			$.ajax({
 			method: "GET",
