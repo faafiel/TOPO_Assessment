@@ -4,9 +4,10 @@ import os
 from django.conf import settings
 
 class Industry(models.Model):
+
     name = models.CharField(max_length=200, primary_key=True)
-    industry_Performance_List = models.JSONField(null=True, blank=True, default=list)
-    company_List = models.JSONField(null=True, blank=True, default=list)
+    industry_performance_list = models.JSONField(null=True, blank=True, default=list)
+    company_list = models.JSONField(null=True, blank=True, default=list)
     
 
     @classmethod
@@ -35,7 +36,7 @@ class Industry(models.Model):
                     for quarter_attribute in quarter:
                         quarter_attribute_list.append(quarter[quarter_attribute])
 
-                    tmp_industry_quarter = Industry_Quarters.create_industry_quarter(custom_industry_quarter_id,
+                    tmp_industry_quarter = Industry_Quarter.create_industry_quarter(custom_industry_quarter_id,
                                                                                      tmp_industry_obj,
                                                                                      quarter_attribute_list[0],
                                                                                     quarter_attribute_list[1],
@@ -138,7 +139,8 @@ class Industry(models.Model):
 
         return tmp_industry_obj
 
-class Industry_Quarters(models.Model):
+class Industry_Quarter(models.Model):
+
     id = models.IntegerField(primary_key=True)
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
     year = models.IntegerField()
@@ -150,7 +152,7 @@ class Industry_Quarters(models.Model):
 
     @classmethod
     def create_industry_quarter(self, id_, tmp_company_obj, year_, quarter_, revenue_, memberships_sold_, avg_Duration_Mins_):
-        tmp_industry_quarter_obj = Industry_Quarters(id=id_,
+        tmp_industry_quarter_obj = Industry_Quarter(id=id_,
                                                      industry=tmp_company_obj,
                                                      year=year_,
                                                      quarter=quarter_,
@@ -161,6 +163,7 @@ class Industry_Quarters(models.Model):
     
        
 class Company(models.Model):
+
     id = models.IntegerField( primary_key=True)
     name = models.CharField(max_length=256)
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
@@ -168,7 +171,7 @@ class Company(models.Model):
     location  = models.CharField(max_length=50)
     client_list = models.JSONField(null=True, blank=True, default=list)
     employee_list = models.JSONField(null=True, blank=True, default=list)
-
+    annual_performance_list = models.JSONField(null=True, blank=True, default=list)
 
     @classmethod
     def create_company (self,id, name, industry, company_revenue, location):
@@ -180,6 +183,7 @@ class Company(models.Model):
         return tmp_industry_quarter_obj
 
 class Client(models.Model):
+
     date = models.CharField(max_length=40)
     membership_id = models.CharField(max_length=5, primary_key=True)
     activity = models.CharField()
@@ -201,6 +205,7 @@ class Client(models.Model):
         return tmp_client_obj
 
 class Employee(models.Model):
+
     employee_id = models.CharField(max_length=20, primary_key=True)
     name = models.CharField(max_length=50)
     role = models.CharField(max_length=50)
@@ -219,13 +224,14 @@ class Employee(models.Model):
         return tmp_employee_obj
 
 class A_Performance(models.Model):
+
     id = models.IntegerField(primary_key=True)
     year = models.IntegerField()
     total_revenue = models.IntegerField()
     total_membership_sold = models.IntegerField()
     top_location = models.CharField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE) 
-
+    annual_rev_distribution_list = models.JSONField(null=True, blank=True, default=list)
 
     @classmethod
     def create_annual_performance (self, id_, year_, total_revenue_, total_membership_sold_, top_location_, company_):
@@ -239,6 +245,7 @@ class A_Performance(models.Model):
         return tmp_annual_performance_obj
 
 class Q_Performance(models.Model):
+
     id = models.IntegerField(primary_key=True)
     year = models.IntegerField()
     quarter = models.CharField(max_length=10)
@@ -262,6 +269,7 @@ class Q_Performance(models.Model):
         return tmp_quarter_performance_obj
 
 class A_Revenue_Distribution(models.Model):
+
     id = models.IntegerField(primary_key=True)
     gym = models.IntegerField()
     pool = models.IntegerField()
@@ -280,12 +288,13 @@ class A_Revenue_Distribution(models.Model):
                                                              )
         return a_revenue_distribution_obj
 
-
 class Item(models.Model):
+
     id = models.IntegerField(primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
 
 class Document(models.Model):
+
     # title = models.CharField(max_length=255)
     file = models.FileField(upload_to='document/') 
 

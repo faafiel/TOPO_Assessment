@@ -25,9 +25,9 @@ class ChartData(APIView):
     def get(self, request, format = None):
         
         # Chart 1 ========================================================================================================
-        quarter = Industry_Quarters.objects.values_list('quarter')
-        year = Industry_Quarters.objects.values_list('year')
-        revenue = Industry_Quarters.objects.values_list('revenue')
+        quarter = Industry_Quarter.objects.values_list('quarter')
+        year = Industry_Quarter.objects.values_list('year')
+        revenue = Industry_Quarter.objects.values_list('revenue')
 
         c1_quarter_year = []
         counter = 0
@@ -126,14 +126,11 @@ class ChartData(APIView):
 def create_unified_data():
 
     # At this stage, all objects are constructed and stored in DB. So now we wil
-    # nest back the objects instances. So that the data can be exported as unfified
+    # nest together the objects instances. So that the data can be exported as unfified. 
+    # Start from bottom of pyramid
 
     industry_query = Industry.objects.all()
     for industry in industry_query:
-        industry_quarter_query = Industry_Quarters.objects.filter(industry=industry.name)
-        industry_quarter_query_json = serializers.serialize('json', industry_quarter_query)
-        industry.industry_Performance_List = industry_quarter_query_json
-        industry.save()
 
         company_query = Company.objects.filter(industry=industry.name)
         for company in company_query:
@@ -146,7 +143,26 @@ def create_unified_data():
             employee_query_json = serializers.serialize('json', employee_query)
             company.employee_list = employee_query_json
 
+            annual_performance_query = A_Performance.objects.filter(company=company)    
+            for annual_performance in annual_performance_query:
+
+                annual_disto_query = A_Revenue_Distribution.objects.filter(a_performance=annual_performance)
+                annual_disto_query_json = serializers.serialize('json', annual_disto_query)
+                annual_performance.annual_rev_distribution_list = annual_disto_query_json
+                annual_performance.save()
+
+            annual_performance_query_json = serializers.serialize('json', annual_performance_query)
+            company.annual_performance_list = annual_performance_query_json
             company.save()
+
+        industry_quarter_query = Industry_Quarter.objects.filter(industry=industry.name)
+        industry_quarter_query_json = serializers.serialize('json', industry_quarter_query)
+        industry.industry_Performance_List = industry_quarter_query_json
+
+        company_query_json = serializers.serialize('json', company_query)
+        industry.company_list = company_query_json
+
+        industry.save()
 
     print("HELP VEN")
 
