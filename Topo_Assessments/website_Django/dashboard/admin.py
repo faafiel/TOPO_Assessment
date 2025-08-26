@@ -1,13 +1,13 @@
 from django.contrib import admin
-
+from import_export.admin import ImportExportActionModelAdmin
 from .models import *
 
-admin.site.register(Industry)
-admin.site.register(Industry_Quarters)
-admin.site.register(Company)
-admin.site.register(Employee)
-admin.site.register(Client)
-admin.site.register(A_Performance)
-admin.site.register(A_Revenue_Distribution)
-admin.site.register(Q_Performance)
+admin.site.register(Industry, ImportExportActionModelAdmin)
+admin.site.register(Industry_Quarters, ImportExportActionModelAdmin)
+admin.site.register(Company, ImportExportActionModelAdmin)
+admin.site.register(Employee, ImportExportActionModelAdmin)
+admin.site.register(Client, ImportExportActionModelAdmin)
+admin.site.register(A_Performance, ImportExportActionModelAdmin)
+admin.site.register(A_Revenue_Distribution, ImportExportActionModelAdmin)
+admin.site.register(Q_Performance, ImportExportActionModelAdmin)
 

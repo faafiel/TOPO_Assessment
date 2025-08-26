@@ -15,10 +15,6 @@ class Industry(models.Model):
         industry_performance_list = []
         company_list = []
 
-        # create model instance to store file
-        tmp_doc = Document.create_document(1, file)
-        # tmp_doc.save()
-
         # nested for loop to extract out data from json file and create sub-classes
         for industry_attribute in file:
             if industry_attribute == "name":
@@ -140,6 +136,8 @@ class Industry(models.Model):
                         tmp_rev_distribution_obj.save()
                         custom_rev_id =+ 1
 
+        return tmp_industry_obj
+
 class Industry_Quarters(models.Model):
     id = models.IntegerField(primary_key=True)
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
@@ -168,6 +166,9 @@ class Company(models.Model):
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
     company_revenue = models.FloatField()
     location  = models.CharField(max_length=50)
+    client_list = models.JSONField(null=True, blank=True, default=list)
+    employee_list = models.JSONField(null=True, blank=True, default=list)
+
 
     @classmethod
     def create_company (self,id, name, industry, company_revenue, location):
@@ -286,20 +287,24 @@ class Item(models.Model):
 
 class Document(models.Model):
     # title = models.CharField(max_length=255)
-    file = models.FileField(upload_to='.') 
+    file = models.FileField(upload_to='document/') 
 
     @classmethod
     def create_document (self, id, file):
         doc_obj = Company(id, file)
         return doc_obj
+    
 
+ 
 #=====================================================================================
 # Import and initialise entire db
+
 file_path = os.path.join(settings.BASE_DIR, 'dashboard', 'unified_Data.json')
 with open(file_path, 'r') as file:
     data = json.load(file)
 
 tmp_industry = Industry.create_Industry(data)
+
 
 
 

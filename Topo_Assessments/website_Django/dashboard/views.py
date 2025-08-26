@@ -3,9 +3,11 @@ from django.template import loader
 from django.http import HttpResponse, FileResponse
 from django.template import RequestContext
 
+from django.core import serializers
+
 from rest_framework.response import Response
-# from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 from django.http import JsonResponse
 from dashboard.models import *
@@ -121,22 +123,33 @@ class ChartData(APIView):
              }
         return Response(data)
 
-class Export(APIView):
+def create_unified_data():
 
-    def get(request, file_name='unified_Data.json', format = None):
-        print("help")
-        # BASE_DIR = Path(__file__)
-        file_path = os.path.join(settings.MEDIA_ROOT, file_name)
-        print(file_path)
-        if os.path.exists(file_path):
-            return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=file_name)
-        else:
-            # Handle file not found error
-            pass
+    # At this stage, all objects are constructed and stored in DB. So now we wil
+    # nest back the objects instances. So that the data can be exported as unfified
 
-    # def serve_uploaded_file(request, filename):
-    #     file_path = os.path.join(settings.MEDIA_ROOT, filename)
-    #     if os.path.exists(file_path):
-    #         return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
-    #     else:
-    #         pass
+    industry_query = Industry.objects.all()
+    for industry in industry_query:
+        industry_quarter_query = Industry_Quarters.objects.filter(industry=industry.name)
+        industry_quarter_query_json = serializers.serialize('json', industry_quarter_query)
+        industry.industry_Performance_List = industry_quarter_query_json
+        industry.save()
+
+        company_query = Company.objects.filter(industry=industry.name)
+        for company in company_query:
+
+            clients_query = Client.objects.filter(company=company)
+            clients_query_json = serializers.serialize('json', clients_query)
+            company.client_list = clients_query_json
+
+            employee_query = Employee.objects.filter(company=company)
+            employee_query_json = serializers.serialize('json', employee_query)
+            company.employee_list = employee_query_json
+
+            company.save()
+
+    print("HELP VEN")
+
+#=====================================================================================
+
+create_unified_data()
