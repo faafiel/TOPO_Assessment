@@ -11,3 +11,6 @@ admin.site.register(A_Performance, ImportExportActionModelAdmin)
 admin.site.register(A_Revenue_Distribution, ImportExportActionModelAdmin)
 admin.site.register(Q_Performance, ImportExportActionModelAdmin)
 
+# Admin html page essentially. Mostly in-built into django package so only need to import
+# desired functionality to this page
+

@@ -3,6 +3,9 @@ from django.db import models
 import os
 from django.conf import settings
 
+# Models are special Django objects. Key addiitonal functionality is that they can be easily saved to Django DB upon
+# construction. Also used as a schema for DB table initialization
+
 class Industry(models.Model):
 
     name = models.CharField(max_length=200, primary_key=True)
@@ -12,6 +15,11 @@ class Industry(models.Model):
 
     @classmethod
     def create_Industry (self, file):
+
+        # This function will be called on server start to import a JSON file containing a unified structure.
+        # Code will iterate through the file and construct objects based off extracted data. All objects
+        # are saved into DB 
+
         name = "1"
         industry_performance_list = []
         company_list = []
@@ -141,13 +149,13 @@ class Industry(models.Model):
 
 class Industry_Quarter(models.Model):
 
-    id = models.IntegerField(primary_key=True)
-    industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
-    year = models.IntegerField()
-    quarter = models.CharField(max_length=4)
-    revenue = models.IntegerField()
-    memberships_Sold = models.IntegerField()
-    avg_Duration_Mins = models.IntegerField()
+    id                  = models.IntegerField(primary_key=True)
+    industry            = models.ForeignKey(Industry, on_delete=models.CASCADE)
+    year                = models.IntegerField()
+    quarter             = models.CharField(max_length=4)
+    revenue             = models.IntegerField()
+    memberships_Sold    = models.IntegerField()
+    avg_Duration_Mins   = models.IntegerField()
 
 
     @classmethod
@@ -164,13 +172,13 @@ class Industry_Quarter(models.Model):
        
 class Company(models.Model):
 
-    id = models.IntegerField( primary_key=True)
-    name = models.CharField(max_length=256)
-    industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
+    id              = models.IntegerField( primary_key=True)
+    name            = models.CharField(max_length=256)
+    industry        = models.ForeignKey(Industry, on_delete=models.CASCADE)
     company_revenue = models.FloatField()
-    location  = models.CharField(max_length=50)
-    client_list = models.JSONField(null=True, blank=True, default=list)
-    employee_list = models.JSONField(null=True, blank=True, default=list)
+    location        = models.CharField(max_length=50)
+    client_list     = models.JSONField(null=True, blank=True, default=list)
+    employee_list   = models.JSONField(null=True, blank=True, default=list)
     annual_performance_list = models.JSONField(null=True, blank=True, default=list)
 
     @classmethod
@@ -184,13 +192,13 @@ class Company(models.Model):
 
 class Client(models.Model):
 
-    date = models.CharField(max_length=40)
-    membership_id = models.CharField(max_length=5, primary_key=True)
-    activity = models.CharField()
-    revenue = models.FloatField()
-    duration_min = models.IntegerField()
-    location = models.CharField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE) 
+    date            = models.CharField(max_length=40)
+    membership_id   = models.CharField(max_length=5, primary_key=True)
+    activity        = models.CharField()
+    revenue         = models.FloatField()
+    duration_min    = models.IntegerField()
+    location        = models.CharField()
+    company         = models.ForeignKey(Company, on_delete=models.CASCADE) 
 
     @classmethod
     def create_Client(self, date_, membership_id_, activity_, revenue_, duration_min_, location_, company_):
@@ -206,12 +214,12 @@ class Client(models.Model):
 
 class Employee(models.Model):
 
-    employee_id = models.CharField(max_length=20, primary_key=True)
-    name = models.CharField(max_length=50)
-    role = models.CharField(max_length=50)
-    cashmoney = models.IntegerField()
-    hired_Date = models.CharField(max_length=20, null = True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    employee_id     = models.CharField(max_length=20, primary_key=True)
+    name            = models.CharField(max_length=50)
+    role            = models.CharField(max_length=50)
+    cashmoney       = models.IntegerField()
+    hired_Date      = models.CharField(max_length=20, null = True)
+    company         = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     @classmethod
     def create_Employee(self, employee_id, name, role, cashmoney, hired_date, company):
@@ -225,13 +233,15 @@ class Employee(models.Model):
 
 class A_Performance(models.Model):
 
-    id = models.IntegerField(primary_key=True)
-    year = models.IntegerField()
-    total_revenue = models.IntegerField()
-    total_membership_sold = models.IntegerField()
-    top_location = models.CharField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE) 
-    annual_rev_distribution_list = models.JSONField(null=True, blank=True, default=list)
+    id                              = models.IntegerField(primary_key=True)
+    year                            = models.IntegerField()
+    total_revenue                   = models.IntegerField()
+    total_membership_sold           = models.IntegerField()
+    top_location                    = models.CharField()
+    company                         = models.ForeignKey(Company, on_delete=models.CASCADE) 
+    annual_rev_distribution_list    = models.JSONField(null=True, blank=True, default=list)
+    quarter_performance_list        = models.JSONField(null=True, blank=True, default=list)
+
 
     @classmethod
     def create_annual_performance (self, id_, year_, total_revenue_, total_membership_sold_, top_location_, company_):
@@ -246,14 +256,14 @@ class A_Performance(models.Model):
 
 class Q_Performance(models.Model):
 
-    id = models.IntegerField(primary_key=True)
-    year = models.IntegerField()
-    quarter = models.CharField(max_length=10)
-    membership_sold = models.IntegerField()
-    avg_duration_min = models.IntegerField()
-    revenue = models.IntegerField()
-    profit_margin = models.FloatField(null = True)
-    a_performance = models.ForeignKey(A_Performance, on_delete=models.CASCADE) 
+    id                  = models.IntegerField(primary_key=True)
+    year                = models.IntegerField()
+    quarter             = models.CharField(max_length=10)
+    membership_sold     = models.IntegerField()
+    avg_duration_min    = models.IntegerField()
+    revenue             = models.IntegerField()
+    profit_margin       = models.FloatField(null = True)
+    a_performance       = models.ForeignKey(A_Performance, on_delete=models.CASCADE) 
 
     @classmethod
     def create_quarter_performance (self, id_, year_, quarter_, membership_sold_, avg_duration_min_, revenue_, profit_margin_, a_performance_):
@@ -270,12 +280,12 @@ class Q_Performance(models.Model):
 
 class A_Revenue_Distribution(models.Model):
 
-    id = models.IntegerField(primary_key=True)
-    gym = models.IntegerField()
-    pool = models.IntegerField()
-    tennis_court = models.IntegerField()
-    personal_training = models.IntegerField()
-    a_performance = models.ForeignKey(A_Performance, on_delete=models.CASCADE) 
+    id                  = models.IntegerField(primary_key=True)
+    gym                 = models.IntegerField()
+    pool                = models.IntegerField()
+    tennis_court        = models.IntegerField()
+    personal_training   = models.IntegerField()
+    a_performance       = models.ForeignKey(A_Performance, on_delete=models.CASCADE) 
 
     @classmethod
     def create_revenue_distribution (self, id_, gym_, pool_, tennis_court_, personal_training_, a_performance_):
@@ -288,25 +298,8 @@ class A_Revenue_Distribution(models.Model):
                                                              )
         return a_revenue_distribution_obj
 
-class Item(models.Model):
-
-    id = models.IntegerField(primary_key=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-class Document(models.Model):
-
-    # title = models.CharField(max_length=255)
-    file = models.FileField(upload_to='document/') 
-
-    @classmethod
-    def create_document (self, id, file):
-        doc_obj = Company(id, file)
-        return doc_obj
-    
-
- 
 #=====================================================================================
-# Import and initialise entire db
+# Import and populate entire db at server startup. 
 
 file_path = os.path.join(settings.BASE_DIR, 'dashboard', 'unified_Data.json')
 with open(file_path, 'r') as file:

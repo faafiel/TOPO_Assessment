@@ -9,3 +9,4 @@ urlpatterns = [
     path('chart_data', views.ChartData.as_view()),
 ]
  
+# App level URL routing

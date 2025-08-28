@@ -7,3 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
 ]
+
+# This is the project level URL. Simply route project level to the app level

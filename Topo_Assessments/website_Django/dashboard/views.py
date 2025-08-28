@@ -1,17 +1,10 @@
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse, FileResponse
-from django.template import RequestContext
-
+from django.http import HttpResponse
 from django.core import serializers
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
-
-from django.http import JsonResponse
 from dashboard.models import *
-from pathlib import Path
 
 def index_page(request):
     return render(request, 'index.html')
@@ -21,6 +14,9 @@ def charts_page(request):
     return HttpResponse(template.render())
 
 class ChartData(APIView):
+
+    # Query out all required data from db and send it to frontend as a comprehensive package. The package is unpacked
+    # at frontend
 
     def get(self, request, format = None):
         
@@ -36,8 +32,8 @@ class ChartData(APIView):
             tmp = str(year[counter]) + " " + str(quarter[counter])
             tmp = tmp.replace(",", "")
             tmp = tmp.replace("'", "")
-            tmp =  tmp.replace("(", "")
-            tmp =  tmp.replace(")", "")
+            tmp = tmp.replace("(", "")
+            tmp = tmp.replace(")", "")
 
             
             c1_quarter_year.append(tmp)
@@ -49,8 +45,8 @@ class ChartData(APIView):
             tmp = str(revenue[rev_counter])
             tmp = tmp.replace(",", "")
             tmp = tmp.replace("'", "")
-            tmp =  tmp.replace("(", "")
-            tmp =  tmp.replace(")", "")
+            tmp = tmp.replace("(", "")
+            tmp = tmp.replace(")", "")
             c1_revenue_list.append(tmp)
             rev_counter += 1
 
@@ -69,24 +65,16 @@ class ChartData(APIView):
             tmp = str(client.activity)
             tmp = tmp.replace(",", "")
             tmp = tmp.replace("'", "")
-            tmp =  tmp.replace("(", "")
-            tmp =  tmp.replace(")", "")
-            if tmp == "Gym":
-                gym.append(client)
-            elif tmp == "Pool":
-                pool.append(client)
-            elif tmp == "Personal Training":
-                personal_training.append(client) 
-            elif tmp == "Dance Class":
-                dance_class.append(client)
-            elif tmp == "Swimming Class":
-                swimming_class.append(client)
-            elif tmp == "Yoga Class":
-                yoga_class.append(client)
-            elif tmp == "Climbing Wall":
-                climbing_wall.append(client)
-            elif tmp == "Tennis Court":
-                tennis_court.append(client)
+            tmp = tmp.replace("(", "")
+            tmp = tmp.replace(")", "")
+            if tmp == "Gym":    gym.append(client)
+            elif tmp == "Pool": pool.append(client)
+            elif tmp == "Personal Training": personal_training.append(client) 
+            elif tmp == "Dance Class": dance_class.append(client)
+            elif tmp == "Swimming Class": swimming_class.append(client)
+            elif tmp == "Yoga Class": yoga_class.append(client)
+            elif tmp == "Climbing Wall": climbing_wall.append(client)
+            elif tmp == "Tennis Court": tennis_court.append(client)
             else:
                 print("Not Captured")
 
@@ -109,16 +97,13 @@ class ChartData(APIView):
                     "Climbing wall",
                     "Tennis court"]
 
-
-        c1_chart_label = "Industry Quarter Revenue"
-        c2_chart_label = "Client activity breakdown by company"
         data ={
                 "c1_labels":c1_quarter_year,
-                "c1_chart_label":c1_chart_label,
+                "c1_chart_label": "Industry Quarter Revenue",
                 "c1_chart_data":c1_revenue_list,
 
                 "c2_labels":c2_labels,
-                "c2_chart_label":c2_chart_label,
+                "c2_chart_label":"Client activity breakdown by company",
                 "c2_chart_data":c2_chart_data    
              }
         return Response(data)
@@ -126,8 +111,9 @@ class ChartData(APIView):
 def create_unified_data():
 
     # At this stage, all objects are constructed and stored in DB. So now we wil
-    # nest together the objects instances. So that the data can be exported as unfified. 
+    # nest together the objects instances. So that the data can be exported as a unfified structure. 
     # Start from bottom of pyramid
+    # This function would be called upon server startup
 
     industry_query = Industry.objects.all()
     for industry in industry_query:
@@ -149,6 +135,11 @@ def create_unified_data():
                 annual_disto_query = A_Revenue_Distribution.objects.filter(a_performance=annual_performance)
                 annual_disto_query_json = serializers.serialize('json', annual_disto_query)
                 annual_performance.annual_rev_distribution_list = annual_disto_query_json
+
+                q_performance_query = Q_Performance.objects.filter(a_performance=annual_performance)
+                q_performance_query_json = serializers.serialize('json', q_performance_query)
+                annual_performance.quarter_performance_list = q_performance_query_json
+
                 annual_performance.save()
 
             annual_performance_query_json = serializers.serialize('json', annual_performance_query)
@@ -157,14 +148,12 @@ def create_unified_data():
 
         industry_quarter_query = Industry_Quarter.objects.filter(industry=industry.name)
         industry_quarter_query_json = serializers.serialize('json', industry_quarter_query)
-        industry.industry_Performance_List = industry_quarter_query_json
+        industry.industry_performance_list = industry_quarter_query_json
 
         company_query_json = serializers.serialize('json', company_query)
         industry.company_list = company_query_json
 
         industry.save()
-
-    print("HELP VEN")
 
 #=====================================================================================
 
