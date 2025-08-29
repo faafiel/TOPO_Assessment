@@ -17,25 +17,31 @@ To localhost the django project:
 
 _Setting up_
 
-1) cd to your equivalent address of "cd C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django". This is the directory structure.
-2) Run CLI "python manage.py makemigrations". This will generate a commit request for frontend DB UI/UX
-3) Run CLI "python manage.py makemigrations dashboards 0028". This will generate a commit request for DB creation
+1) The entire folder "TOPO assessmnets" contains the UV venv, MCP, data importation script, and Django website. The instructions below are within the context of my local directory, so some localization is necessary. It will be necessary to initate and popualte DB, and import library as per pyproject.TOML file. DB population can only be done after running python scripts!
+
+2) cd to "C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments" or equivalent. 
+3) Run the "main.py" file. This will handle data importing and produce a "unified_Data.json" file at "C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django\dashboard". At this stage, we have the data to start Django server
+2) cd to your equivalent address of "cd C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django". This is the directory structure.
+3) Run CLI "python manage.py makemigrations". This will generate a commit request for frontend DB UI/UX
+4) Run CLI "python manage.py makemigrations dashboards 0028". This will generate a commit request for DB creation
 
    - NOTE: The 0028 may be different on different machines. It may be 0001 or 0029 on a new machine. Please check "migrations" folder in directory to verify the number of the latest file 
    - The format for this CLI is "python manage.py makemigrations dashboards <migration_prefix>"
-4) Run CLI "python manage.py migrate". commit latest migration
+
+5) Run CLI "python manage.py migrate". commit latest migration
    
 _Start Server_
 
-1) python manage.py runserver    
+1) cd to "C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django" or equivalent, where the manage.py file is located
+2) run CLI "python manage.py runserver"    
 
 _Localhost address_
 
-1) http://127.0.0.1:8000/index/
+1) Got to http://127.0.0.1:8000/index/ on browser
 
 _Exporting/Importing_
 
-1) It is done automatically upon server starup using a data file from local directory
+1) It is done automatically upon server startup using a data file from local directory
 2) But to manually import/export, naviagte to the admin page on the localhost and login
 
    - Password: topo1234 
