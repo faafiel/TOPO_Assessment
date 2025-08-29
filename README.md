@@ -1,6 +1,6 @@
 OVERVIEW
 
-This repo hosts a uv venv that contains a django project. Briefly, the recurring solution to problems can be described as constant data massaging, and handling data as a consolidated package wherever possible to simplify the codebase
+This repo hosts a uv venv that contains a django project. Briefly, the recurring solution to problems can be described as constant data massaging, and packing/unpacking data as a consolidated package wherever possible to simplify the codebase
 
 ELABORATION
 
@@ -8,7 +8,7 @@ To solve the import challenge, I converted the data from the datasets into pytho
 
 I used Django to host the website; which imported the locally stored unified data JSON file upon every server startup. So data is overwritten every time. The Django database is sqlite3. The JSON data is again broken down to create objects which populate the DB. 
 
-Data routed from DB to frontened was consolidated into 1 package, so I only used 1 AJAX call; then unpacked at frontend. Chart filtering was done via updating. 
+Data routed from DB to frontened was consolidated into 1 package, then unpacked at frontend. 
 
 At this stage user should be in the index.html which can further access the admin page which has a UI/UX for the database. 
 From admin page, it is possible to import/export ALL Industry objects (in various formats) which will export the entire DB as a unified structure. Alternatively, it is possible to import/export the nested class instances such as Company, Annual_Performance etc which will also include their respective nested objects (related via foreign key).
@@ -18,8 +18,8 @@ To localhost the django project:
 _Setting up_
 
 1) cd to your equivalent address of "cd C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django". This is the directory structure.
-2) Run CLI "python manage.py makemigrations". This will generate a commit request for frontend
-3) Run CLI "python manage.py makemigrations dashboards 0026". This will generate a commit request for DB
+2) Run CLI "python manage.py makemigrations". This will generate a commit request for frontend DB UI/UX
+3) Run CLI "python manage.py makemigrations dashboards 0028". This will generate a commit request for DB creation
 
    - NOTE: The 0028 may be different on different machines. It may be 0001 or 0029 on a new machine. Please check "migrations" folder in directory to verify the number of the latest file 
    - The format for this CLI is "python manage.py makemigrations dashboards <migration_prefix>"
@@ -41,7 +41,7 @@ _Exporting/Importing_
    - Password: topo1234 
    - User: Amir
 
-3) Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, then export 
+3) Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, export 
    ALL "Industry" class.
 
 CHALLENGES
