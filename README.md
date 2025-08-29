@@ -47,7 +47,7 @@ _Exporting/Importing_
    - Password: topo1234 
    - User: Amir
 
-3) Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, export 
+3) Then navigate to the models(objects) in DB that want to be exported/imported. To export entire DB, export 
    ALL "Industry" class.
 
    DASHBOARD VIEW: CHARTS
