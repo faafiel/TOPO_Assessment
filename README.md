@@ -51,22 +51,27 @@ _Exporting/Importing_
    ALL "Industry" class.
 
    DASHBOARD VIEW: CHARTS
+   
    <img width="1303" height="792" alt="image" src="https://github.com/user-attachments/assets/88e8c4c3-8dbe-462c-91a8-b076fb6c31aa" />
    
 
    ADMIN VIEW: AND DB UI/UX
+   
    <img width="1850" height="793" alt="image" src="https://github.com/user-attachments/assets/63e8d83d-fe57-494d-a200-0831359c8d5d" />
    
 
    ADMIN VIEW: ONE WAY TO EXPORT
+   
    <img width="1460" height="627" alt="image" src="https://github.com/user-attachments/assets/1284ac8a-6244-4014-a453-db0cd8a53f54" />
    
 
    ADMIN VIEW: INDIVIDUAL RECORDS
+   
    <img width="592" height="821" alt="image" src="https://github.com/user-attachments/assets/b0e20e62-f6b3-426a-ac84-904c519df11e" />
    
 
    ADMIN VIEW: LOGIN
+   
    <img width="697" height="562" alt="image" src="https://github.com/user-attachments/assets/7bc16053-96fb-4fb3-b65d-c2d51c52b6d5" />
 
 
