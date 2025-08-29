@@ -35,15 +35,17 @@ _Localhost address_
 
 6) http://127.0.0.1:8000/index/
 
-_Exporting_
+_Exporting/Importing_
 
-7) To export, naviagte to the admin page and login
+7) It is done automatically upon server starup using a data file from local directory
+8) But to manually import/export, naviagte to the admin page on the localhost and login
 
    - Password: topo1234 
    - User: Amir
 
-8) Open up Industry table by selecting "Industrys"
-9) Open up an industry record and find the export button at the bottom. Alternatively, you may export from the Industry table view
+   Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, then export 
+   ALL "Industry" class.
+
 
 TODO
 
