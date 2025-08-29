@@ -342,7 +342,7 @@ class Importer:
     def import_pptx(self, file):
         # Because the data may exist within different "shapes" such as text box, tables etc, they need to be parsed over and 
         # standardised into a common data structure: a dataframe. Due to the lack of a discernible pattern to the shape
-        # order, I had to do some tailoring to the pptx format for each extracted shape
+        # order, I had to do some tailoring for the pptx format for each extracted shape
        
         prs = Presentation(file)
         extracted_df = []       # 1D array to store all shapes extracted from PDF
