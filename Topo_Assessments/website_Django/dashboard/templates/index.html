@@ -182,7 +182,6 @@
 			// Global variables
 			let industry_quarter_chart;		// Chart instance
 			let company_performance_chart;	// Chart instance
-
 			
 
 			$.ajax({
@@ -193,7 +192,6 @@
 				draw_pie_graph(data, 'company_performance_chart');
 				populate_start_dropdown(data, 'start_date_c1');
 				populate_end_dropdown(data, 'end_date_c1');
-				// populate_c1_dropdown(data, 'start_date_c1', 'end_date_c1');
 
 			},
 			error: function(error_data) {
@@ -203,7 +201,6 @@
 			
 // ================================================================================================
 			
-			// const start_year_dropdown = document.getElementById('start_date_c1');
 			const start_year_dropdown = document.getElementById('start_date_c1');
 			const end_year_dropdown = document.getElementById('end_date_c1');
 
@@ -244,6 +241,7 @@
 			}
 
 			function update_c1(data) {
+
 				let c1_labels = data.c1_labels;
 				let c1_chart_data = data.c1_chart_data;
 				let start_date_val = document.getElementById("start_date_c1");
@@ -253,8 +251,8 @@
 				let selected_end_val = end_date_val.options[end_date_val.selectedIndex].value;
 
 				// Iterate over full list and slice out the specified period
-				// First iteration over list is to identify range. 
-				// Second iteration is to create output array to update chart.
+				// - First iteration over list is to identify range. 
+				// - Second iteration is to create output array to update chart.
 				let start;
 				let end;
 				filter_range_data = [];
@@ -281,60 +279,61 @@
 
 
 			function draw_pie_graph(data, id) {
-			let c2_labels = data.c2_labels;
-			let c2_chart_label = data.c2_chart_label;
-			let c2_chart_data = data.c2_chart_data;
-			let ctx = document.getElementById(id).getContext('2d');
-			
-			company_performance_chart = new Chart(ctx, {
-				type: 'pie',
-				data: {
-					labels: c2_labels,
-					datasets: [{
-						label: c2_chart_label,
-						data: c2_chart_data,
-						backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)',
-						'rgba(100, 159, 100, 0.2)',
-						'rgba(69, 2, 200, 0.2)'
-						],
-						borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(100, 159, 100, 0.2)',
-						'rgba(69, 2, 200, 0.2)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					responsive: true,
-					title: {
-						display: true,
-						text: "Client activity breakdown by company",
-						position: top
+
+				let c2_labels = data.c2_labels;
+				let c2_chart_label = data.c2_chart_label;
+				let c2_chart_data = data.c2_chart_data;
+				let ctx = document.getElementById(id).getContext('2d');
+				
+				company_performance_chart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+						labels: c2_labels,
+						datasets: [{
+							label: c2_chart_label,
+							data: c2_chart_data,
+							backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
+							'rgba(100, 159, 100, 0.2)',
+							'rgba(69, 2, 200, 0.2)'
+							],
+							borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(100, 159, 100, 0.2)',
+							'rgba(69, 2, 200, 0.2)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
 					},
-					plugins: {
-						datalabels: {
-							formatter: (value, context) => {
-								return value; // Returns the raw data value for each slice
-							},
-							font: {
-								weight: 'bold' // Optional: Set font weight
+					options: {
+						responsive: true,
+						title: {
+							display: true,
+							text: "Client activity breakdown by company",
+							position: top
+						},
+						plugins: {
+							datalabels: {
+								formatter: (value, context) => {
+									return value; // Returns the raw data value for each slice
+								},
+								font: {
+									weight: 'bold' // Optional: Set font weight
+								}
 							}
 						}
 					}
-				}
-			});
+				});
 			}
 
 			function draw_line_graph(data, id) {
