@@ -41,7 +41,7 @@ _Localhost address_
 
 _Exporting/Importing_
 
-1) It is done automatically upon server startup using a data file from local directory
+1) Importing is done automatically upon server startup using a data file from local directory
 2) But to manually import/export, naviagte to the admin page on the localhost and login
 
    - Password: topo1234 
@@ -52,27 +52,32 @@ _Exporting/Importing_
 
    DASHBOARD VIEW: CHARTS
    
-   <img width="1303" height="792" alt="image" src="https://github.com/user-attachments/assets/88e8c4c3-8dbe-462c-91a8-b076fb6c31aa" />
+   <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/88e8c4c3-8dbe-462c-91a8-b076fb6c31aa" />
    
 
    ADMIN VIEW: AND DB UI/UX
    
-   <img width="1850" height="793" alt="image" src="https://github.com/user-attachments/assets/63e8d83d-fe57-494d-a200-0831359c8d5d" />
+   <img width="1400" height="600" alt="image" src="https://github.com/user-attachments/assets/63e8d83d-fe57-494d-a200-0831359c8d5d" />
    
 
    ADMIN VIEW: ONE WAY TO EXPORT
    
-   <img width="1460" height="627" alt="image" src="https://github.com/user-attachments/assets/1284ac8a-6244-4014-a453-db0cd8a53f54" />
+   <img width="1100" height="400" alt="image" src="https://github.com/user-attachments/assets/1284ac8a-6244-4014-a453-db0cd8a53f54" />
+
+   ADMIN VIEW: EXPORT OPTIONS
+
+   <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/91996efb-1d5a-4a31-86e9-bc4cf19e758a" />
+
    
 
    ADMIN VIEW: INDIVIDUAL RECORDS
    
-   <img width="592" height="821" alt="image" src="https://github.com/user-attachments/assets/b0e20e62-f6b3-426a-ac84-904c519df11e" />
+   <img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/b0e20e62-f6b3-426a-ac84-904c519df11e" />
    
 
    ADMIN VIEW: LOGIN
    
-   <img width="697" height="562" alt="image" src="https://github.com/user-attachments/assets/7bc16053-96fb-4fb3-b65d-c2d51c52b6d5" />
+   <img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/7bc16053-96fb-4fb3-b65d-c2d51c52b6d5" />
 
 
 
