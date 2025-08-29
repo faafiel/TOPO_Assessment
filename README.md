@@ -29,16 +29,16 @@ _Setting up_
   
 _Start Server_
 
-5) python manage.py runserver    
+1) python manage.py runserver    
 
 _Localhost address_
 
-6) http://127.0.0.1:8000/index/
+2) http://127.0.0.1:8000/index/
 
 _Exporting/Importing_
 
-7) It is done automatically upon server starup using a data file from local directory
-8) But to manually import/export, naviagte to the admin page on the localhost and login
+1) It is done automatically upon server starup using a data file from local directory
+2) But to manually import/export, naviagte to the admin page on the localhost and login
 
    - Password: topo1234 
    - User: Amir
@@ -46,7 +46,6 @@ _Exporting/Importing_
    Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, then export 
    ALL "Industry" class.
 
+CHALLENGES
 
-TODO
-
-- Fix HTML titles
+1) New libraries and new library functions with frontend
