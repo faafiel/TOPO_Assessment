@@ -13,8 +13,7 @@ Data routed from DB to frontened was consolidated into 1 package, then unpacked 
 At this stage user should be in the index.html which can further access the admin page which has a UI/UX for the database. 
 From admin page, it is possible to import/export ALL Industry objects (in various formats) which will export the entire DB as a unified structure. Alternatively, it is possible to import/export the nested class instances such as Company, Annual_Performance etc which will also include their respective nested objects (related via foreign key).
 
-To localhost the django project:
-
+DJANGO PORJECT:
 _Setting up_
 
 1) The entire folder "TOPO assessments" contains the UV venv, MCP, data importation script, and Django website. The instructions below are within the context of my local directory, so some localization is necessary. It will be necessary to initate and popualte DB, and import library as per pyproject.TOML file. DB population can only be done after running python scripts!
