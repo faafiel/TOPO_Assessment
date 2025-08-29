@@ -17,7 +17,7 @@ To localhost the django project:
 
 _Setting up_
 
-1) The entire folder "TOPO assessmnets" contains the UV venv, MCP, data importation script, and Django website. The instructions below are within the context of my local directory, so some localization is necessary. It will be necessary to initate and popualte DB, and import library as per pyproject.TOML file. DB population can only be done after running python scripts!
+1) The entire folder "TOPO assessments" contains the UV venv, MCP, data importation script, and Django website. The instructions below are within the context of my local directory, so some localization is necessary. It will be necessary to initate and popualte DB, and import library as per pyproject.TOML file. DB population can only be done after running python scripts!
 
 2) cd to "C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments" or equivalent. 
 3) Run the "main.py" file. This will handle data importing and produce a "unified_Data.json" file at "C:\Users\USER\OneDrive\12.Github_repos\Topo_Assessments\website_Django\dashboard". At this stage, we have the data to start Django server
