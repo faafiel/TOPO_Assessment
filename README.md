@@ -50,6 +50,17 @@ _Exporting/Importing_
 3) Then navigate to the models(objects) in DB that want to be exported/imported. To export/import entire DB, export 
    ALL "Industry" class.
 
+   <img width="1303" height="792" alt="image" src="https://github.com/user-attachments/assets/88e8c4c3-8dbe-462c-91a8-b076fb6c31aa" />
+   
+   <img width="1850" height="793" alt="image" src="https://github.com/user-attachments/assets/63e8d83d-fe57-494d-a200-0831359c8d5d" />
+
+   <img width="1460" height="627" alt="image" src="https://github.com/user-attachments/assets/1284ac8a-6244-4014-a453-db0cd8a53f54" />
+
+   <img width="592" height="821" alt="image" src="https://github.com/user-attachments/assets/b0e20e62-f6b3-426a-ac84-904c519df11e" />
+
+
+
+
 CHALLENGES
 
 1) New libraries and new library functions related with frontend. DB table population and importing/exporting functionality was the most time consuming blocker 
